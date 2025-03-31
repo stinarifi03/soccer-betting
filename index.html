@@ -35,12 +35,13 @@
             margin-top: 10px;
         }
         .ticket-container {
-            width: 300px;
+            width: 80mm;
             margin: 0 auto;
             font-family: 'Courier New', monospace;
-            font-size: 10px;
+            font-size: 9px;
         }
         .ticket {
+            width: 80mm;
             border: 1px solid #000;
             padding: 5px;
             background-color: white;
@@ -89,6 +90,7 @@
         .ticket-details div {
             display: flex;
             justify-content: space-between; /* Aligns GE, OE, CG in one line */
+            white-space: nowrap;
         }
         .ticket-section {
             margin: 10px 0;
@@ -163,13 +165,13 @@
             display: block;
         }
         .ticket-disclaimer {
-            font-size: 5px;
+            font-size: 6px !important;
             font-weight: bold;
             margin-top: 5px;
             line-height: 1.2;
             text-align: center;
             padding: 0;
-            white-space: nowrap;
+            white-space: normal !important; /* Allow disclaimer to wrap */
         }
         .ticket-disclaimer br {
             display: block;
@@ -207,85 +209,42 @@
             width: 100%;
         }
         @media print {
-            body * {
-                visibility: hidden;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
+          body {
+            width: 80mm !important; /* Exact paper width */
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 9px !important; /* Slightly smaller for thermal */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
 
-            .ticket-container,
-            .ticket-container * {
-                visibility: visible;
-                color: #000 !important;
-                background: transparent !important;
-            }
+          .ticket {
+            width: 80mm !important; /* Not 300px */
+            max-width: 80mm !important;
+            padding: 1px !important; /* Reduce padding */
+            border: none !important; /* Thermal printers don't need borders */
+          }
 
-            .ticket-container {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100% !important;
-                max-width: 300px !important;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
+          /* Force all text elements to use exact sizing */
+          * {
+            font-size: inherit !important;
+            line-height: 1 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
 
-            .ticket {
-                width: 100% !important;
-                margin: 0 auto !important;
-                padding: 5px !important;
-                border: 2px solid #000 !important;
-                box-shadow: none !important;
-                page-break-inside: avoid;
-            }
+          /* Special element adjustments */
+          .ticket-title {
+            font-size: 24px !important; /* Reduced from 36px */
+          }
 
-            /* Force all borders to print */
-            .ticket-line,
-            .ticket-winnings,
-            .league-header,
-            .ticket-details::before {
-                border-color: #000 !important;
-                background-color: #000 !important;
-            }
+          .ticket-winnings-amount {
+            font-size: 12px !important; /* Reduced from 14px */
+          }
 
-            /* Thermal printer optimizations */
-            body {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-
-            /* Remove any potential white gaps */
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-
-            /* Ensure vertical lines are visible */
-            .ticket-details::before {
-                display: block !important;
-                height: 100% !important;
-            }
-
-            /* Fix footer spacing */
-            .ticket-footer {
-                justify-content: space-between !important;
-                gap: 0 !important;
-                padding: 0 5px !important;
-            }
-
-            /* Center alignment fixes */
-            .league-header,
-            .ticket-section-header,
-            .ticket-disclaimer {
-                text-align: center !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-            }
-
-            /* Force monospace for all text */
-            * {
-                font-family: 'Courier New', monospace !important;
-            }
+          .ticket-footer img {
+            height: 25px !important; /* Reduced from 35px */
+          }
         }
     </style>
 </head>
