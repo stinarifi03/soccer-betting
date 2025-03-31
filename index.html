@@ -4,91 +4,79 @@
     <title>Soccer Betting Ticket Generator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      /* SCREEN PREVIEW */
-      body {
-        background: #f5f5f5;
-        padding: 20px;
-      }
+          /* SCREEN PREVIEW STYLING */
+          body {
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 20px;
+          }
 
-      .ticket-container {
-        width: 80mm;
-        min-height: 100mm;
-        margin: 0 auto;
-        background: white;
-        font-family: 'Courier New', monospace;
-        font-size: 9pt;
-        line-height: 1;
-        padding: 2mm;
-        box-shadow: 0 0 5px rgba(0,0,0,0.2);
-      }
+          .ticket-container {
+            width: 80mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          }
 
-      /* PRINT OUTPUT */
-      @media print {
-        @page {
-          size: 80mm auto;
-          margin: 0;
-        }
+          .ticket {
+            padding: 5px;
+            font-size: 10px;
+            line-height: 1.2;
+          }
 
-        body {
-          background: white;
-          width: 80mm !important;
-          padding: 0 !important;
-          margin: 0 !important;
-        }
+          /* THERMAL PRINT STYLING */
+          @media print {
+            @page {
+              size: 80mm auto;
+              margin: 0;
+            }
 
-        .ticket-container {
-          width: 80mm !important;
-          margin: 0 !important;
-          padding: 1mm !important;
-          box-shadow: none !important;
-          font-size: 8pt !important;
-        }
+            body {
+              background: white;
+              padding: 0 !important;
+              width: 80mm !important;
+            }
 
-        /* Hide everything except ticket */
-        body > *:not(.ticket-container) {
-          display: none !important;
-        }
+            .ticket-container {
+              width: 80mm !important;
+              margin: 0 !important;
+              box-shadow: none !important;
+            }
+            .ticket {
+              overflow: hidden !important;
+              word-break: break-all !important;
+            }
 
-        /* Force thermal-friendly styling */
-        * {
-          color: black !important;
-          background: transparent !important;
-          text-shadow: none !important;
-          box-shadow: none !important;
-          font-family: 'Courier New', monospace !important;
-        }
-      }
+            * {
+              color: black !important;
+              text-shadow: none !important;
+            }
 
-      /* TICKET ELEMENTS */
-      .ticket-line {
-        border-top: 1px solid black;
-        margin: 2mm 0;
-      }
+            /* Hide everything except ticket */
+            body > *:not(.ticket-container) {
+              display: none !important;
+            }
+          }
 
-      .ticket-title {
-        font-size: 14pt;
-        font-weight: bold;
-        text-align: center;
-        margin: 1mm 0;
-      }
+          /* TICKET ELEMENTS (keep your existing classes) */
+          .ticket-header, .ticket-line, .ticket-details,
+          .ticket-section, .ticket-footer {
+            margin: 3px 0;
+          }
 
-      .ticket-details div {
-        margin: 1mm 0;
-      }
+          .ticket-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+          }
 
-      .ticket-winnings {
-        font-weight: bold;
-        text-align: center;
-        margin: 3mm 0;
-        border-top: 1px dashed black;
-        border-bottom: 1px dashed black;
-        padding: 1mm 0;
-      }
-
-      .ticket-footer img {
-        height: 8mm;
-        margin: 0 1mm;
-      }
+          .ticket-winnings {
+            border-top: 2px dashed black;
+            border-bottom: 2px dashed black;
+            padding: 3px 0;
+            text-align: center;
+            font-weight: bold;
+          }
     </style>
 </head>
 <body>
