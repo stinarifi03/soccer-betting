@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soccer Betting Ticket Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .header-label {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .section-label {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .scroll-pane {
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: auto;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        .ticket-container {
+            width: 300px;
+            margin: 0 auto;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+        }
+        .ticket {
+            border: 1px solid #000;
+            padding: 5px;
+            background-color: white;
+        }
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .ticket-logo {
+            height: 50px;
+        }
+        .ticket-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 15px;
+            line-height: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+        .ticket-qr {
+            height: 70px;
+        }
+        .ticket-line {
+            border-top: 1px solid #000;
+            margin: 5px -10px; /* Negative margin extends lines to edge */
+            width: calc(100% + 20px); /* Compensates for padding */
+        }
+        .ticket-details {
+            position: relative; /* Needed for absolute positioning of the vertical line */
+            padding-left: 10px; /* Creates space for the vertical line */
+            margin: 5px 0;
+            line-height: 1.2;
+        }
+        .ticket-details::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -5px; /* Starts above to connect with top line */
+            bottom: -5px; /* Extends below to connect with bottom line */
+            width: 1px;
+            background: #000;
+        }
+        .ticket-section {
+            margin: 10px 0;
+        }
+        .ticket-section-header {
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            margin: 5px 0;
+        }
+        .ticket-match {
+            margin: 5px 0;
+            line-height: 1.2;
+        }
+        .ticket-match-teams {
+            font-weight: bold;
+        }
+        .ticket-amount {
+            display: flex;
+            justify-content: space-between;
+            margin: 3px 0;
+        }
+        .ticket-winnings {
+            border: 1px solid #000;
+            height: 30px;
+            display: flex;
+            margin: 5px 0;
+        }
+        .ticket-winnings-pattern {
+            width: 77px;
+            background: repeating-linear-gradient(
+                to right,
+                #000,
+                #000 3px,
+                transparent 3px,
+                transparent 8px
+            );
+        }
+        .ticket-winnings-center {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .ticket-winnings-label {
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .ticket-winnings-amount {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .ticket-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            gap: 3px;
+        }
+        .ticket-footer img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+        .ticket-barcode {
+            width: 260px;
+            height: 60px;
+            margin: 5px auto;
+            display: block;
+        }
+        .ticket-disclaimer {
+            font-size: 5px;
+            font-weight: bold;
+            margin-top: 5px;
+            line-height: 1.2;
+            text-align: center;
+            padding: 0 10px;
+            white-space: nowrap;
+        }
+        .ticket-disclaimer br {
+            display: block;
+            content: "";
+            margin-top: 2px;
+        }
+        .hidden {
+            display: none;
+        }
+        .status-message {
+            color: green;
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .ticket-line-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 2px 0;
+        }
+        .ticket-line-item-left {
+            white-space: nowrap;
+            margin-right: 10px;
+        }
+        .ticket-line-item-right {
+            white-space: nowrap;
+        }
+        .league-header {
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            font-weight: bold;
+            text-align: center;
+            padding: 2px 0;
+            margin: 5px 0;
+        }
+        .three-column-line {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 2px 0; /* Adjust spacing as needed */
+        }
+
+        .middle-text {
+            flex-grow: 1; /* Takes available space */
+            text-align: center; /* Centers the middle content */
+        }
+        .four-column-line {
+          display: flex;
+          justify-content: space-between; /* Evenly distributes space */
+          width: 100%;
+          font-family: 'Courier New', monospace; /* Ensures fixed-width alignment */
+        }
+        @media (max-width: 768px) {
+          .form-grid {
+            grid-template-columns: 1fr; /* Stack columns on mobile */
+          }
+          .ticket-container {
+            width: 100%; /* Full width on small screens */
+          }
+        }
+        @media print {
+            /* Hide everything by default */
+            body * {
+                visibility: hidden;
+            }
+
+            /* Only show the ticket container and its contents */
+            .ticket-container,
+            .ticket-container * {
+                visibility: visible;
+            }
+
+            /* Position the ticket at the top of the page */
+            .ticket-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                border: none;
+            }
+
+            /* Ensure the ticket itself prints correctly */
+            .ticket {
+                border: 1px solid #000 !important; /* Keep the ticket border */
+                margin: 0 auto; /* Center the ticket */
+                box-shadow: none !important;
+                background: white !important;
+                page-break-inside: avoid; /* Prevent splitting across pages */
+            }
+
+            /* Force black colors for all text in print */
+            .ticket * {
+                color: black !important;
+            }
+
+            /* Ensure all borders print */
+            .ticket-line,
+            .ticket-winnings,
+            .league-header {
+                border-color: black !important;
+            }
+
+            /* Ensure the vertical line prints */
+            .ticket-details::before {
+                visibility: visible !important;
+                background: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-label">Soccer Betting Ticket Generator</div>
+
+    <div class="form-grid">
+        <!-- Left Column: Match Details -->
+        <div class="form-group">
+            <label>Team 1:</label>
+            <input type="text" class="form-control" id="team1Field">
+        </div>
+        <div class="form-group">
+            <label>Team 2:</label>
+            <input type="text" class="form-control" id="team2Field">
+        </div>
+        <div class="form-group">
+            <label>Odds:</label>
+            <input type="number" step="0.01" class="form-control" id="oddsField">
+        </div>
+        <div class="form-group">
+            <label>Bet Amount:</label>
+            <input type="number" step="0.01" class="form-control" id="betAmountField">
+        </div>
+        <div class="form-group">
+            <label>Quota Type:</label>
+            <input type="text" class="form-control" id="quotaTypeField" value="QUOTAX">
+        </div>
+        <div class="form-group">
+            <label>League Name:</label>
+            <input type="text" class="form-control" id="leagueNameField">
+        </div>
+        <div class="form-group">
+            <label>Bet Type:</label>
+            <input type="text" class="form-control" id="betTypeField" value="1X2">
+        </div>
+        <div class="form-group">
+            <label>Bet Chosen:</label>
+            <input type="text" class="form-control" id="betChosenField" value="1">
+        </div>
+        <div class="form-group hidden" id="bonusGroup">
+            <label>Bonus:</label>
+            <input type="number" step="0.01" class="form-control" id="bonusField" value="0">
+        </div>
+
+        <!-- Middle Column: Ticket Details -->
+        <div class="form-group">
+            <label>Ticket Code (CB):</label>
+            <input type="text" class="form-control" id="ticketCodeField">
+        </div>
+        <div class="form-group">
+            <label>TG:</label>
+            <input type="text" class="form-control" id="tgField" value="WEB">
+        </div>
+        <div class="form-group">
+            <label>IB:</label>
+            <input type="text" class="form-control" id="ibField" value="INTERNET">
+        </div>
+        <div class="form-group">
+            <label>NS:</label>
+            <input type="text" class="form-control" id="nsField" value="ONLINE">
+        </div>
+        <div class="form-group">
+            <label>Timestamp (OE):</label>
+            <input type="text" class="form-control" id="timestampField">
+        </div>
+        <div class="form-group">
+            <label>Date (GE):</label>
+            <input type="date" class="form-control" id="matchDatePicker">
+        </div>
+
+        <!-- Right Column: Match Metadata -->
+        <div class="form-group">
+            <label>Match ID:</label>
+            <input type="text" class="form-control" id="matchIdField">
+        </div>
+        <div class="form-group">
+            <label>Code:</label>
+            <input type="text" class="form-control" id="codeField">
+        </div>
+        <div class="form-group">
+            <label>Sport Type:</label>
+            <input type="text" class="form-control" id="sportField" value="FOOTBALL">
+        </div>
+        <div class="form-group">
+            <label>Match Date:</label>
+            <input type="text" class="form-control" id="dateField">
+        </div>
+        <div class="form-group">
+            <label>Match Time:</label>
+            <input type="text" class="form-control" id="timeField">
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-group">
+            <button class="btn btn-primary" id="addMatchBtn">Add Match</button>
+            <div id="addMatchStatus" class="status-message"></div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" id="generateTicketBtn">Generate Ticket</button>
+            <div id="generateTicketStatus" class="status-message"></div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-info" id="printTicketBtn">Print Ticket</button>
+            <div id="printTicketStatus" class="status-message"></div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-warning" id="clearBtn">Clear All</button>
+        </div>
+    </div>
+
+    <div class="section-label">Ticket Preview:</div>
+    <div class="scroll-pane">
+        <div class="ticket-container" id="ticketContainer">
+            <!-- Ticket preview will be generated here -->
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+<script>
+    // Store matches
+    let matches = [];
+
+    // Image URLs (replace with your actual image paths)
+    const imageUrls = {
+        logo: "https://i.ibb.co/gL0sJ652/goldbet-logo.png",
+        qrCode: "https://i.ibb.co/kgQjhSxd/qr-code.png",
+        gioco: "https://i.ibb.co/htLkLfT/gioco.jpg",
+        plus18: "https://i.ibb.co/cKFdcWh0/18.jpg",
+        amdTimone: "https://i.ibb.co/tPWw7D9s/amd-timone.png",
+        adm: "https://i.ibb.co/gZs7ykyX/adm.jpg",
+        get barcode() {
+            const canvas = document.createElement("canvas");
+            JsBarcode(canvas, document.getElementById('ticketCodeField').value || "TICKET", {
+                format: "CODE128",
+                width: 2,
+                height: 60,
+                displayValue: false
+            });
+            return canvas.toDataURL("image/png");
+        }
+    };
+
+    // Initialize when DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set default values
+        document.getElementById('ticketCodeField').value = Math.random().toString(36).substring(2, 10).toUpperCase();
+        document.getElementById('timestampField').value = new Date().toLocaleTimeString();
+        document.getElementById('matchDatePicker').valueAsDate = new Date();
+
+        // Set current date in date field
+        const today = new Date();
+        document.getElementById('dateField').value = today.toISOString().split('T')[0];
+        document.getElementById('timeField').value = today.toTimeString().substring(0, 5);
+
+        // Button event listeners
+        document.getElementById('addMatchBtn').addEventListener('click', handleAddMatch);
+        document.getElementById('generateTicketBtn').addEventListener('click', handleGenerateTicket);
+        document.getElementById('printTicketBtn').addEventListener('click', handlePrintTicket);
+        document.getElementById('clearBtn').addEventListener('click', handleClearAll);
+    });
+
+    function handleAddMatch() {
+        try {
+            const match = {
+                team1: document.getElementById('team1Field').value.trim(),
+                team2: document.getElementById('team2Field').value.trim(),
+                odds: parseFloat(document.getElementById('oddsField').value),
+                betAmount: parseFloat(document.getElementById('betAmountField').value),
+                quotaType: document.getElementById('quotaTypeField').value.trim(),
+                leagueName: document.getElementById('leagueNameField').value.trim(),
+                betType: document.getElementById('betTypeField').value.trim(),
+                betChosen: document.getElementById('betChosenField').value.trim(),
+                matchId: document.getElementById('matchIdField').value.trim(),
+                code: document.getElementById('codeField').value.trim(),
+                sport: document.getElementById('sportField').value.trim(),
+                date: document.getElementById('dateField').value.trim(),
+                time: document.getElementById('timeField').value.trim(),
+                matchDate: document.getElementById('matchDatePicker').value
+            };
+
+            // Validate required fields
+            if (!match.team1 || !match.team2 || isNaN(match.odds)) {
+                throw new Error('Please fill in Team 1, Team 2, and valid Odds');
+            }
+
+            matches.push(match);
+
+            // Show bonus field after 5 matches
+            if (matches.length >= 5) {
+                document.getElementById('bonusGroup').classList.remove('hidden');
+            }
+
+            // Clear only match input fields
+            ['team1Field', 'team2Field', 'oddsField', 'leagueNameField',
+             'matchIdField', 'codeField', 'dateField', 'timeField'].forEach(id => {
+                document.getElementById(id).value = '';
+            });
+
+            updateMatchList();
+            showStatus('addMatchStatus', 'Match added successfully!');
+        } catch (error) {
+            alert(error.message);
+            console.error('Add Match Error:', error);
+        }
+    }
+
+    function handleGenerateTicket() {
+        try {
+            if (matches.length === 0) {
+                throw new Error('Please add at least one match first!');
+            }
+
+            const betAmount = parseFloat(document.getElementById('betAmountField').value);
+            if (isNaN(betAmount)) {
+                throw new Error('Please enter a valid bet amount');
+            }
+
+            const bonusAmount = parseFloat(document.getElementById('bonusField').value) || 0;
+
+            const ticketData = {
+                ticketCode: document.getElementById('ticketCodeField').value.trim(),
+                location: document.getElementById('team1Field').value.trim() || "Online",
+                timestamp: document.getElementById('timestampField').value.trim(),
+                tg: document.getElementById('tgField').value.trim(),
+                date: document.getElementById('matchDatePicker').value,
+                ib: document.getElementById('ibField').value.trim(),
+                ns: document.getElementById('nsField').value.trim(),
+                quotaType: document.getElementById('quotaTypeField').value.trim(),
+                betType: document.getElementById('betTypeField').value.trim(),
+                betChosen: document.getElementById('betChosenField').value.trim(),
+                bonusAmount: bonusAmount,
+                matches: matches,
+                betAmount: betAmount,
+                imageUrls: imageUrls
+            };
+
+            displayTicket(ticketData);
+            showStatus('generateTicketStatus', 'Ticket generated!');
+        } catch (error) {
+            alert(error.message);
+            console.error('Generate Ticket Error:', error);
+        }
+    }
+
+    function handlePrintTicket() {
+        try {
+            const ticketPreview = document.querySelector('.ticket');
+            if (!ticketPreview) {
+                throw new Error('Please generate a ticket first!');
+            }
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Print Ticket</title>
+                        <style>
+                            body { font-family: 'Courier New', monospace; padding: 10px; }
+                            .ticket {
+                                width: 300px;
+                                border: 1px solid #000;
+                                padding: 5px;
+                                background-color: white;
+                                font-size: 10px;
+                                margin: 0 auto;
+                            }
+                            .ticket-header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-bottom: 5px;
+                            }
+                            .ticket-logo { height: 50px; }
+                            .ticket-title { font-size: 24px; font-weight: bold; margin: 0 10px; }
+                            .ticket-qr { height: 70px; }
+                            .ticket-line { border-top: 1px solid #000; margin: 5px 0; }
+                            .ticket-details { margin: 5px 0; line-height: 1.2; }
+                            .ticket-section { margin: 10px 0; }
+                            .ticket-section-header {
+                                text-align: center;
+                                font-weight: bold;
+                                font-size: 12px;
+                                margin: 5px 0;
+                            }
+                            .ticket-match { margin: 5px 0; line-height: 1.2; }
+                            .ticket-match-teams { font-weight: bold; }
+                            .ticket-amount { display: flex; justify-content: space-between; margin: 3px 0; }
+                            .ticket-winnings {
+                                border: 1px solid #000;
+                                height: 30px;
+                                display: flex;
+                                margin: 5px 0;
+                            }
+                            .ticket-winnings-pattern {
+                                width: 77px;
+                                background: repeating-linear-gradient(
+                                    to right,
+                                    #000,
+                                    #000 3px,
+                                    transparent 3px,
+                                    transparent 8px
+                                );
+                            }
+                            .ticket-winnings-center {
+                                flex-grow: 1;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            .ticket-winnings-label { font-weight: bold; font-size: 10px; }
+                            .ticket-winnings-amount { font-weight: bold; font-size: 14px; }
+                            .ticket-footer {
+                                display: flex;
+                                justify-content: space-between;
+                                margin-top: 10px;
+                            }
+                            .ticket-footer img { height: 30px; }
+                            .ticket-barcode { width: 260px; height: 60px; margin: 5px auto; display: block; }
+                            .ticket-disclaimer { font-size: 8px; margin-top: 5px; line-height: 1.2; }
+                            .league-header {
+                                border-top: 1px solid #000;
+                                border-bottom: 1px solid #000;
+                                font-weight: bold;
+                                padding: 2px 0;
+                                margin: 5px 0;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        ${ticketPreview.outerHTML}
+                        <script>
+                            setTimeout(function() {
+                                window.print();
+                                window.close();
+                            }, 200);
+                        <\/script>
+                    </body>
+                </html>
+            `);
+            printWindow.document.close();
+            showStatus('printTicketStatus', 'Print dialog opened!');
+        } catch (error) {
+            alert(error.message);
+            console.error('Print Ticket Error:', error);
+        }
+    }
+
+    function handleClearAll() {
+        matches = [];
+        document.getElementById('ticketContainer').innerHTML = '';
+        document.getElementById('bonusGroup').classList.add('hidden');
+
+        // Clear all input fields except defaults
+        const preserveFields = ['quotaTypeField', 'betTypeField', 'betChosenField',
+        'tgField', 'ibField', 'nsField', 'sportField'];
+
+        document.querySelectorAll('input[type="text"], input[type="number"]').forEach(input => {
+            if (!preserveFields.includes(input.id)) {
+                input.value = '';
+            }
+        });
+
+        // Reset dynamic values
+        document.getElementById('ticketCodeField').value = Math.random().toString(36).substring(2, 10).toUpperCase();
+        document.getElementById('timestampField').value = new Date().toLocaleTimeString();
+        document.getElementById('matchDatePicker').valueAsDate = new Date();
+    }
+
+    function formatLine(leftText, rightText, totalWidth = 30) {
+        const availableSpace = totalWidth - leftText.length - rightText.length;
+        const spaces = ' '.repeat(Math.max(1, availableSpace)); // Ensure at least 1 space
+        return leftText + spaces + rightText;
+    }
+
+    function displayTicket(ticketData) {
+        const container = document.getElementById('ticketContainer');
+        const totalOdds = calculateTotalOdds(ticketData.matches);
+        const potentialWinnings = (ticketData.betAmount * totalOdds) + (ticketData.bonusAmount || 0);
+
+        // Group matches by league
+        const matchesByLeague = {};
+        ticketData.matches.forEach(match => {
+            if (!matchesByLeague[match.leagueName]) {
+                matchesByLeague[match.leagueName] = [];
+            }
+            matchesByLeague[match.leagueName].push(match);
+        });
+
+        container.innerHTML = `
+            <div class="ticket">
+                <div class="ticket-header">
+                    <img src="${ticketData.imageUrls.logo}" alt="Logo" class="ticket-logo">
+                    <div class="ticket-title">GoldBet</div>
+                    <div>
+                        <div style="font-size: 6px; font-weight: bold;">BONUS BENVENUTO ONLI</div>
+                        <img src="${ticketData.imageUrls.qrCode}" alt="QR Code" class="ticket-qr">
+                    </div>
+                </div>
+
+                <div class="ticket-line"></div>
+
+                <div class="ticket-details">
+                    <div>CB-${ticketData.ticketCode}</div>
+                    <div class="four-column-line"> <span>CC-4098</span> <span>NC-GBO Italy S.p.A</span>  <span>PV-14274</span>  <span>TM-4</span> </div>
+                    <div class="ticket-amount"> <div>NP-Lignano Sabbiadoro, Via Arcobalen</div>   <div>TG-${ticketData.tg}</div></div>
+                    <div class="three-column-line"> <div>GE-${formatDate(ticketData.date)}</div>    <div>OE-${ticketData.timestamp}</div>    <div>CG-2005376</div></div>
+                    <div class="ticket-amount"><div>IB-${ticketData.ib}${' '.repeat(18)}</div> <div>NS-${ticketData.ns}</div></div>
+                </div>
+
+                <div class="ticket-line"></div>
+
+                <div class="ticket-section">
+                    <div class="ticket-section-header">${ticketData.quotaType.toUpperCase()}</div>
+
+                    ${Object.entries(matchesByLeague).map(([leagueName, leagueMatches]) => `
+                        <div class="league-header">${leagueName}</div>
+                        ${leagueMatches.map(match => `
+                            <div class="ticket-match">
+                                <div class="ticket-amount"><div>(${match.matchId}) ${match.code} ${match.sport}${' '.repeat(15 - match.sport.length)}</div> <div>${match.date} ${match.time}</div></div>
+                                <div class="ticket-match-teams">${match.team1} - ${match.team2}</div>
+                                <div class="ticket-amount"> <div>${match.betType}</div>  <div>${' '.repeat(35 - match.betType.length)}${match.betChosen}  ${formatNumber(match.odds)}</div></div>
+                            </div>
+                        `).join('')}
+                    `).join('')}
+                </div>
+
+                <div class="ticket-amount">
+                    <div>IMPORTO SCOMMESSO</div>
+                    <div>${formatNumber(ticketData.betAmount)} €</div>
+                </div>
+
+                ${ticketData.bonusAmount > 0 ? `
+                <div class="ticket-amount">
+                    <div>BONUS</div>
+                    <div>${formatNumber(ticketData.bonusAmount)} €</div>
+                </div>
+                ` : ''}
+
+                <div class="ticket-winnings">
+                    <div class="ticket-winnings-pattern"></div>
+                    <div class="ticket-winnings-center">
+                        <div class="ticket-winnings-label">VINCITA TOTALE</div>
+                        <div class="ticket-winnings-amount">${formatNumber(potentialWinnings)}€</div>
+                    </div>
+                    <div class="ticket-winnings-pattern"></div>
+                </div>
+
+                <div class="ticket-disclaimer">
+                    Consulta le probabilità di vincita e i regolamenti di gioco su goldbet.it.<br>
+                    Il gioco è vietato ai minori di 18 anni e può causare dipendenza patologica.
+                </div>
+
+                <div class="ticket-footer">
+                    <img src="${ticketData.imageUrls.gioco}" alt="Gioco">
+                    <img src="${ticketData.imageUrls.plus18}" alt="+18">
+                    <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone">
+                    <img src="${ticketData.imageUrls.adm}" alt="ADM">
+                </div>
+
+                <img src="${ticketData.imageUrls.barcode}" alt="Barcode" class="ticket-barcode">
+            </div>
+        `;
+    }
+
+    // Helper functions
+    function showStatus(elementId, message) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = message;
+            setTimeout(() => element.textContent = '', 3000);
+        }
+    }
+
+    function updateMatchList() {
+        const container = document.getElementById('ticketContainer');
+        container.innerHTML = `
+            <h4>Current Matches (${matches.length})</h4>
+            <ul class="list-group">
+                ${matches.map((match, index) => `
+                    <li class="list-group-item">
+                        ${index + 1}. ${match.team1} vs ${match.team2} @ ${match.odds.toFixed(2)}
+                        <button class="btn btn-sm btn-danger float-end" onclick="removeMatch(${index})">Remove</button>
+                    </li>
+                `).join('')}
+            </ul>
+        `;
+    }
+
+    function removeMatch(index) {
+        matches.splice(index, 1);
+        if (matches.length < 5) {
+            document.getElementById('bonusGroup').classList.add('hidden');
+        }
+        updateMatchList();
+    }
+
+    function calculateTotalOdds(matches) {
+        return matches.reduce((total, match) => total * match.odds, 1);
+    }
+
+    function formatNumber(number) {
+        return number.toFixed(2).replace('.', ',');
+    }
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-GB').replace(/\//g, '/');
+    }
+
+    // Make removeMatch available globally for the inline onclick
+    window.removeMatch = removeMatch;
+</script>
+</body>
+</html>
