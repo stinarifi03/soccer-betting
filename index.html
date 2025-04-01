@@ -215,45 +215,51 @@
         }
         @media print {
           @page {
-              size: 80mm auto; /* Explicit paper size */
-              margin: 0 !important; /* Override printer defaults */
-              padding: 0 !important;
-          }
-          body {
-            width: 80mm !important; /* Exact paper width */
+            size: 80mm auto;
             margin: 0 !important;
-            padding: 0 !important;
-            font-size: 9px !important; /* Slightly smaller for thermal */
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
           }
 
-          .ticket {
-            width: 80mm !important; /* Not 300px */
-            max-width: 80mm !important;
-            padding: 1px !important; /* Reduce padding */
-            border: none !important; /* Thermal printers don't need borders */
+          /* Fix header spacing and logo size */
+          .ticket-header {
+            margin-bottom: 2px !important; /* Reduced from 5px */
           }
-
-          /* Force all text elements to use exact sizing */
-          * {
-            font-size: inherit !important;
-            line-height: 1 !important;
-            margin: 0 !important;
-            padding: 0 !important;
-          }
-
-          /* Special element adjustments */
           .ticket-title {
-            font-size: 24px !important; /* Reduced from 36px */
+            font-size: 28px !important; /* Increased from 24px */
+            margin: 0 2px !important; /* Reduced spacing */
+            line-height: 1 !important;
+          }
+          .ticket-logo {
+            height: 30px !important; /* Adjusted logo size */
           }
 
-          .ticket-winnings-amount {
-            font-size: 12px !important; /* Reduced from 14px */
+          /* Center league names */
+          .league-header {
+            text-align: center !important;
+            padding: 1px 0 !important;
+            margin: 3px auto !important;
           }
 
+          /* Align GE, OE, CG in one line */
+          .three-column-line {
+            display: flex !important;
+            justify-content: space-between !important;
+            white-space: nowrap !important;
+            margin: 2px 0 !important;
+          }
+
+          /* Fix footer spacing */
+          .ticket-footer {
+            gap: 2px !important; /* Reduced from default */
+            margin-top: 5px !important;
+          }
           .ticket-footer img {
-            height: 25px !important; /* Reduced from 35px */
+            height: 30px !important; /* Increased from 25px */
+          }
+
+          /* General compactness */
+          * {
+            line-height: 1.1 !important;
+            padding: 0 !important;
           }
         }
     </style>
