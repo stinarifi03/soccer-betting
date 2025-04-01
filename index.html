@@ -6,7 +6,8 @@
     <style>
         body {
             padding: 20px;
-            font-family: Arial, sans-serif;
+            /*font-family: Arial, sans-serif;*/
+            font-family: monospace !important;
         }
         .header-label {
             font-size: 20px;
@@ -107,6 +108,10 @@
         }
         .ticket-match-teams {
             font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 70mm !important; /* Leave 10mm margin */
         }
         .ticket-amount {
             display: flex;
@@ -209,6 +214,11 @@
             width: 100%;
         }
         @media print {
+          @page {
+              size: 80mm auto; /* Explicit paper size */
+              margin: 0 !important; /* Override printer defaults */
+              padding: 0 !important;
+          }
           body {
             width: 80mm !important; /* Exact paper width */
             margin: 0 !important;
