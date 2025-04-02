@@ -214,44 +214,31 @@
             width: 100%;
         }
         @media print {
-          body * {
-            visibility: hidden;
-            margin: 0 !important;
-            padding: 0 !important;
-          }
+            body {
+                margin: 0;
+                padding: 0;
+            }
 
-          .ticket-container,
-          .ticket-container * {
-            visibility: visible;
-            color: black !important;
-            background: white !important;
-            font-family: 'Courier New', monospace !important;
-            font-size: 10px !important;
-            line-height: 1 !important;
-          }
+            .ticket {
+                width: 80mm !important; /* Ensure the ticket width is fixed */
+                height: auto !important;
+                margin: 0 !important;
+                padding: 2mm !important; /* Adjust padding as needed */
+                border: none !important;
+                box-shadow: none !important;
+            }
 
-          .ticket {
-            width: 80mm !important; /* Thermal paper width */
-            height: auto !important;
-            margin: 0 !important;
-            padding: 2mm !important;
-            border: none !important;
-            box-shadow: none !important;
-          }
+            /* Ensure all child elements respect the ticket width */
+            .ticket * {
+                max-width: 80mm !important; /* Prevent overflow */
+                overflow: hidden; /* Hide overflow */
+                text-overflow: ellipsis; /* Add ellipsis for long text */
+            }
 
-          /* Force all borders to print */
-          .ticket-line,
-          .ticket-winnings,
-          .league-header {
-            border-color: black !important;
-            border-width: 1pt !important;
-          }
-
-          /* Thermal printer optimizations */
-          @page {
-            size: 80mm auto;
-            margin: 0;
-          }
+            /* Remove visibility hidden for all elements */
+            body * {
+                visibility: visible !important;
+            }
         }
     </style>
 </head>
