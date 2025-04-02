@@ -214,30 +214,186 @@
             width: 100%;
         }
         @media print {
+            /* General Body Styles */
             body {
                 margin: 0;
                 padding: 0;
+                font-family: 'Courier New', monospace !important; /* Ensure consistent font */
+                font-size: 10px !important; /* Set a consistent font size for printing */
             }
 
+            /* Ticket Container */
+            .ticket-container {
+                width: 80mm !important; /* Fixed width for thermal paper */
+                margin: 0 auto; /* Center the ticket */
+                padding: 0; /* Remove padding */
+            }
+
+            /* Ticket Styles */
             .ticket {
-                width: 80mm !important; /* Ensure the ticket width is fixed */
-                height: auto !important;
-                margin: 0 !important;
-                padding: 2mm !important; /* Adjust padding as needed */
-                border: none !important;
-                box-shadow: none !important;
+                width: 80mm !important; /* Ensure ticket width is fixed */
+                height: auto !important; /* Allow height to adjust based on content */
+                margin: 0 !important; /* Remove margin */
+                padding: 2mm !important; /* Adjust padding for print */
+                border: none !important; /* Remove border */
+                box-shadow: none !important; /* Remove shadow */
+                background: white !important; /* Ensure background is white */
             }
 
-            /* Ensure all child elements respect the ticket width */
-            .ticket * {
-                max-width: 80mm !important; /* Prevent overflow */
+            /* Header Section */
+            .ticket-header {
+                display: flex; /* Use flexbox for layout */
+                justify-content: space-between; /* Space elements evenly */
+                align-items: center; /* Center items vertically */
+                margin-bottom: 5px; /* Space below header */
+            }
+
+            .ticket-logo {
+                height: 50px; /* Fixed height for logo */
+            }
+
+            .ticket-title {
+                font-size: 24px; /* Adjust title size for print */
+                font-weight: bold; /* Make title bold */
+                margin: 0; /* Remove margin */
+            }
+
+            /* QR Code */
+            .ticket-qr {
+                height: 70px; /* Fixed height for QR code */
+            }
+
+            /* Divider Line */
+            .ticket-line {
+                border-top: 1px solid #000; /* Solid line for separation */
+                margin: 5px 0; /* Space above and below line */
+            }
+
+            /* Ticket Details Section */
+            .ticket-details {
+                margin: 5px 0; /* Space around details */
+                line-height: 1.2; /* Adjust line height for readability */
+            }
+
+            .ticket-details div {
+                display: flex; /* Use flexbox for layout */
+                justify-content: space-between; /* Space items evenly */
+                white-space: nowrap; /* Prevent text wrapping */
+            }
+
+            /* Ticket Section Header */
+            .ticket-section-header {
+                text-align: center; /* Center the section header */
+                font-weight: bold; /* Make header bold */
+                font-size: 12px; /* Adjust font size */
+                margin: 5px 0; /* Space around header */
+            }
+
+            /* Match Section */
+            .ticket-match {
+                margin: 5px 0; /* Space around each match */
+                line-height: 1.2; /* Adjust line height */
+            }
+
+            .ticket-match-teams {
+                font-weight: bold; /* Make team names bold */
+                white-space: nowrap; /* Prevent text wrapping */
                 overflow: hidden; /* Hide overflow */
                 text-overflow: ellipsis; /* Add ellipsis for long text */
+                max-width: 70mm; /* Limit width to fit within ticket */
             }
 
-            /* Remove visibility hidden for all elements */
-            body * {
-                visibility: visible !important;
+            /* Amount Section */
+            .ticket-amount {
+                display: flex; /* Use flexbox for layout */
+                justify-content: space-between; /* Space items evenly */
+                margin: 3px 0; /* Space around amount */
+            }
+
+            /* Winnings Section */
+            .ticket-winnings {
+                border: 1px solid #000; /* Border around winnings */
+                height: 30px; /* Fixed height */
+                display: flex; /* Use flexbox for layout */
+                margin: 5px 0; /* Space around winnings */
+            }
+
+            .ticket-winnings-pattern {
+                width: 77px; /* Fixed width for pattern */
+                background: repeating-linear-gradient(
+                    to right,
+                    #000,
+                    #000 3px,
+                    transparent 3px,
+                    transparent 8px
+                ); /* Pattern for winnings */
+            }
+
+            .ticket-winnings-center {
+                flex-grow: 1; /* Allow center to grow */
+                display: flex; /* Use flexbox for layout */
+                flex-direction: column; /* Stack items vertically */
+                justify-content: center; /* Center items vertically */
+                align-items: center; /* Center items horizontally */
+            }
+            .ticket-winnings-label {
+                font-weight: bold; /* Make label bold */
+                font-size: 10px; /* Adjust font size */
+            }
+
+            .ticket-winnings-amount {
+                font-weight: bold; /* Make amount bold */
+                font-size: 14px; /* Adjust font size */
+            }
+
+            /* Disclaimer Section */
+            .ticket-disclaimer {
+                font-size: 6px !important; /* Small font size for disclaimer */
+                font-weight: bold; /* Make disclaimer bold */
+                margin-top: 5px; /* Space above disclaimer */
+                line-height: 1.2; /* Adjust line height for readability */
+                text-align: center; /* Center the disclaimer text */
+                padding: 0; /* Remove padding */
+                white-space: normal !important; /* Allow disclaimer to wrap */
+            }
+
+            .ticket-disclaimer br {
+                display: block; /* Ensure line breaks are respected */
+                content: "";
+                margin-top: 2px; /* Space between lines */
+            }
+
+            /* Footer Section */
+            .ticket-footer {
+                display: flex; /* Use flexbox for layout */
+                justify-content: space-between; /* Space items evenly */
+                align-items: center; /* Center items vertically */
+                margin-top: 10px; /* Space above footer */
+            }
+
+            .ticket-footer img {
+                height: 30px; /* Fixed height for footer images */
+                width: auto; /* Maintain aspect ratio */
+                display: block; /* Ensure images are block elements */
+            }
+
+            /* Barcode Section */
+            .ticket-barcode {
+                width: 260px; /* Fixed width for barcode */
+                height: 60px; /* Fixed height for barcode */
+                margin: 5px auto; /* Center barcode */
+                display: block; /* Ensure barcode is a block element */
+            }
+
+            /* League Header */
+            .league-header {
+                border-top: 1px solid #000; /* Top border for league header */
+                border-bottom: 1px solid #000; /* Bottom border for league header */
+                font-weight: bold; /* Make header bold */
+                text-align: center; /* Center the league name */
+                padding: 2px 0; /* Space above and below header */
+                margin: 5px auto; /* Center league names */
+                width: 100%; /* Full width */
             }
         }
     </style>
