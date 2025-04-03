@@ -214,186 +214,78 @@
             width: 100%;
         }
         @media print {
-            /* Reset everything for thermal printing */
-            body {
+            /* RESET & BASIC LAYOUT */
+            body, html {
                 margin: 0 !important;
                 padding: 0 !important;
                 width: 80mm !important;
+                height: auto !important;
                 background: white !important;
                 font-family: 'Courier New', monospace !important;
                 font-size: 9px !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
-            /* Hide everything except the ticket */
-            body > *:not(.ticket-container) {
-                display: none !important;
-            }
-
-            /* Ticket container - exact thermal paper width */
-            .ticket-container {
-                width: 80mm !important;
-                min-width: 80mm !important;
-                max-width: 80mm !important;
-                margin: 0 !important;
-                padding: 0 !important;
+            /* SHIFT EVERYTHING LEFT */
+            body {
+                transform: translateX(-2mm) !important;
                 position: relative !important;
                 left: 0 !important;
-                top: 0 !important;
             }
 
-            /* Ticket styling - remove all spacing inconsistencies */
+            /* TICKET CONTAINER */
+            .ticket-container {
+                width: 76mm !important; /* Slightly narrower to account for shift */
+                min-width: 76mm !important;
+                max-width: 76mm !important;
+                margin: 0 !important;
+                padding: 0 0 0 2mm !important; /* Extra left padding */
+                position: relative !important;
+                left: 0 !important;
+                overflow: visible !important;
+            }
+
+            /* TICKET BODY */
             .ticket {
-                width: 80mm !important;
-                min-width: 80mm !important;
-                max-width: 80mm !important;
+                width: 76mm !important;
+                min-width: 76mm !important;
+                max-width: 76mm !important;
                 margin: 0 !important;
                 padding: 2mm 3mm !important;
                 border: none !important;
-                box-shadow: none !important;
-                background: white !important;
-                color: black !important;
-                overflow: hidden !important;
                 box-sizing: border-box !important;
+                position: relative !important;
+                left: -1mm !important; /* Fine-tune left positioning */
             }
 
-            /* Force all elements to print exactly as shown */
+            /* FORCE LEFT ALIGNMENT FOR ALL ELEMENTS */
             .ticket * {
-                color: black !important;
-                background: transparent !important;
-                text-shadow: none !important;
-                box-shadow: none !important;
+                margin-left: 0 !important;
+                padding-left: 0 !important;
+                text-align: left !important;
             }
 
-            /* Header adjustments */
+            /* SPECIFIC ELEMENT ADJUSTMENTS */
             .ticket-header {
-                display: flex !important;
-                justify-content: space-between !important;
-                align-items: center !important;
-                margin-bottom: 1mm !important;
-                padding: 0 !important;
-                height: 15mm !important;
+                padding-left: 1mm !important;
             }
 
-            .ticket-logo {
-                height: 15mm !important;
-                width: auto !important;
-                max-width: 30mm !important;
-            }
-
-            .ticket-title {
-                font-size: 10pt !important;
-                font-weight: 900 !important;
-                margin: 0 2mm !important;
-                line-height: 1 !important;
-                text-align: center !important;
-                flex-grow: 1 !important;
-            }
-
-            .ticket-qr {
-                height: 20mm !important;
-                width: 20mm !important;
-            }
-
-            /* Divider lines */
-            .ticket-line {
-                border-top: 0.5pt solid black !important;
-                margin: 1mm 0 !important;
-                width: 100% !important;
-            }
-
-            /* Details section */
             .ticket-details {
-                margin: 1mm 0 !important;
-                line-height: 1.1 !important;
-                padding-left: 3mm !important;
+                padding-left: 1mm !important;
             }
 
-            .ticket-details::before {
-                height: calc(100% + 1mm) !important;
-                top: -0.5mm !important;
+            .ticket-line {
+                margin-left: -3mm !important;
+                width: 80mm !important; /* Extend lines full width */
             }
 
-            /* Match sections */
-            .ticket-section {
-                margin: 1mm 0 !important;
-            }
-
-            .ticket-section-header {
-                font-size: 9pt !important;
-                margin: 1mm 0 !important;
-            }
-
-            .ticket-match {
-                margin: 1mm 0 !important;
-                line-height: 1.1 !important;
-            }
-
-            .ticket-match-teams {
-                max-width: 74mm !important;
-            }
-
-            /* Amounts and winnings */
-            .ticket-amount {
-                margin: 0.5mm 0 !important;
-            }
-
-            .ticket-winnings {
-                height: 8mm !important;
-                margin: 1mm 0 !important;
-                border-width: 0.5pt !important;
-            }
-
-            .ticket-winnings-pattern {
-                width: 15mm !important;
-            }
-
-            .ticket-winnings-label {
-                font-size: 8pt !important;
-            }
-
-            .ticket-winnings-amount {
-                font-size: 10pt !important;
-            }
-
-            /* Footer elements */
-            .ticket-footer {
-                margin-top: 2mm !important;
-            }
-
-            .ticket-footer img {
-                height: 10mm !important;
-                width: auto !important;
-                align-items: center;
-            }
-
-            .ticket-barcode {
-                width: 74mm !important;
-                height: 15mm !important;
-                margin: 1mm auto !important;
-            }
-
-            /* League headers */
-            .league-header {
-                margin: 1mm 0 !important;
-                padding: 0.5mm 0 !important;
-                border-width: 0.5pt !important;
-            }
-
-            /* Disclaimer text */
-            .ticket-disclaimer {
-                text-align: center;
-                font-size: 6pt !important;
-                margin-top: 1mm !important;
-                line-height: 1.1 !important;
-            }
-
-            /* Print-specific page settings */
+            /* PRINT SETTINGS */
             @page {
                 size: 80mm auto;
-                margin: 0mm;
-                padding: 0mm;
+                margin: 0 !important;
+                padding: 0 !important;
+                margin-left: -2mm !important; /* Compensate for printer offset */
             }
         }
     </style>
@@ -643,119 +535,109 @@
         }
     }
 
-<!--    function handlePrintTicket() {-->
-<!--        try {-->
-<!--            const ticketPreview = document.querySelector('.ticket');-->
-<!--            if (!ticketPreview) {-->
-<!--                throw new Error('Please generate a ticket first!');-->
-<!--            }-->
+    function handlePrintTicket() {
+        try {
+            const ticketPreview = document.querySelector('.ticket');
+            if (!ticketPreview) {
+                throw new Error('Please generate a ticket first!');
+            }
 
-<!--            const printWindow = window.open('', '_blank');-->
-<!--            printWindow.document.write(`-->
-<!--                <html>-->
-<!--                    <head>-->
-<!--                        <title>Print Ticket</title>-->
-<!--                        <style>-->
-<!--                            body { font-family: 'Courier New', monospace; padding: 10px; }-->
-<!--                            .ticket {-->
-<!--                                width: 300px;-->
-<!--                                border: 1px solid #000;-->
-<!--                                padding: 5px;-->
-<!--                                background-color: white;-->
-<!--                                font-size: 10px;-->
-<!--                                margin: 0 auto;-->
-<!--                            }-->
-<!--                            .ticket-header {-->
-<!--                                display: flex;-->
-<!--                                justify-content: space-between;-->
-<!--                                align-items: center;-->
-<!--                                margin-bottom: 5px;-->
-<!--                            }-->
-<!--                            .ticket-logo { height: 50px; }-->
-<!--                            .ticket-title { font-size: 24px; font-weight: bold; margin: 0 10px; }-->
-<!--                            .ticket-qr { height: 70px; }-->
-<!--                            .ticket-line { border-top: 1px solid #000; margin: 5px 0; }-->
-<!--                            .ticket-details { margin: 5px 0; line-height: 1.2; }-->
-<!--                            .ticket-section { margin: 10px 0; }-->
-<!--                            .ticket-section-header {-->
-<!--                                text-align: center;-->
-<!--                                font-weight: bold;-->
-<!--                                font-size: 12px;-->
-<!--                                margin: 5px 0;-->
-<!--                            }-->
-<!--                            .ticket-match { margin: 5px 0; line-height: 1.2; }-->
-<!--                            .ticket-match-teams { font-weight: bold; }-->
-<!--                            .ticket-amount { display: flex; justify-content: space-between; margin: 3px 0; }-->
-<!--                            .ticket-winnings {-->
-<!--                                border: 1px solid #000;-->
-<!--                                height: 30px;-->
-<!--                                display: flex;-->
-<!--                                margin: 5px 0;-->
-<!--                            }-->
-<!--                            .ticket-winnings-pattern {-->
-<!--                                width: 77px;-->
-<!--                                background: repeating-linear-gradient(-->
-<!--                                    to right,-->
-<!--                                    #000,-->
-<!--                                    #000 3px,-->
-<!--                                    transparent 3px,-->
-<!--                                    transparent 8px-->
-<!--                                );-->
-<!--                            }-->
-<!--                            .ticket-winnings-center {-->
-<!--                                flex-grow: 1;-->
-<!--                                display: flex;-->
-<!--                                flex-direction: column;-->
-<!--                                justify-content: center;-->
-<!--                                align-items: center;-->
-<!--                            }-->
-<!--                            .ticket-winnings-label { font-weight: bold; font-size: 10px; }-->
-<!--                            .ticket-winnings-amount { font-weight: bold; font-size: 14px; }-->
-<!--                            .ticket-footer {-->
-<!--                                display: flex;-->
-<!--                                justify-content: space-between;-->
-<!--                                margin-top: 10px;-->
-<!--                            }-->
-<!--                            .ticket-footer img { height: 30px; }-->
-<!--                            .ticket-barcode { width: 260px; height: 60px; margin: 5px auto; display: block; }-->
-<!--                            .ticket-disclaimer { font-size: 8px; margin-top: 5px; line-height: 1.2; }-->
-<!--                            .league-header {-->
-<!--                                border-top: 1px solid #000;-->
-<!--                                border-bottom: 1px solid #000;-->
-<!--                                font-weight: bold;-->
-<!--                                padding: 2px 0;-->
-<!--                                margin: 5px 0;-->
-<!--                            }-->
-<!--                        </style>-->
-<!--                    </head>-->
-<!--                    <body>-->
-<!--                        ${ticketPreview.outerHTML}-->
-<!--                        <script>-->
-<!--                            setTimeout(function() {-->
-<!--                                window.print();-->
-<!--                                window.close();-->
-<!--                            }, 200);-->
-<!--                        <\/script>-->
-<!--                    </body>-->
-<!--                </html>-->
-<!--            `);-->
-<!--            printWindow.document.close();-->
-<!--            showStatus('printTicketStatus', 'Print dialog opened!');-->
-<!--        } catch (error) {-->
-<!--            alert(error.message);-->
-<!--            console.error('Print Ticket Error:', error);-->
-<!--        }-->
-<!--    }-->
-        function handleprintTicket() {
-            // Add a temporary class for print styling
-            document.body.classList.add('printing-ticket');
-
-            // Print after a brief delay to allow styling to apply
-            setTimeout(() => {
-                window.print();
-                document.body.classList.remove('printing-ticket');
-            }, 100);
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Print Ticket</title>
+                        <style>
+                            body { font-family: 'Courier New', monospace; padding: 10px; }
+                            .ticket {
+                                width: 300px;
+                                border: 1px solid #000;
+                                padding: 5px;
+                                background-color: white;
+                                font-size: 10px;
+                                margin: 0 auto;
+                            }
+                            .ticket-header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-bottom: 5px;
+                            }
+                            .ticket-logo { height: 50px; }
+                            .ticket-title { font-size: 24px; font-weight: bold; margin: 0 10px; }
+                            .ticket-qr { height: 70px; }
+                            .ticket-line { border-top: 1px solid #000; margin: 5px 0; }
+                            .ticket-details { margin: 5px 0; line-height: 1.2; }
+                            .ticket-section { margin: 10px 0; }
+                            .ticket-section-header {
+                                text-align: center;
+                                font-weight: bold;
+                                font-size: 12px;
+                                margin: 5px 0;
+                            }
+                            .ticket-match { margin: 5px 0; line-height: 1.2; }
+                            .ticket-match-teams { font-weight: bold; }
+                            .ticket-amount { display: flex; justify-content: space-between; margin: 3px 0; }
+                            .ticket-winnings {
+                                border: 1px solid #000;
+                                height: 30px;
+                                display: flex;
+                                margin: 5px 0;
+                            }
+                            .ticket-winnings-pattern {
+                                width: 77px;
+                                background: repeating-linear-gradient(
+                                    to right,
+                                    #000,
+                                    #000 3px,
+                                    transparent 3px,
+                                    transparent 8px
+                                );
+                            }
+                            .ticket-winnings-center {
+                                flex-grow: 1;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            .ticket-winnings-label { font-weight: bold; font-size: 10px; }
+                            .ticket-winnings-amount { font-weight: bold; font-size: 14px; }
+                            .ticket-footer {
+                                display: flex;
+                                justify-content: space-between;
+                                margin-top: 10px;
+                            }
+                            .ticket-footer img { height: 30px; }
+                            .ticket-barcode { width: 260px; height: 60px; margin: 5px auto; display: block; }
+                            .ticket-disclaimer { font-size: 8px; margin-top: 5px; line-height: 1.2; }
+                            .league-header {
+                                border-top: 1px solid #000;
+                                border-bottom: 1px solid #000;
+                                font-weight: bold;
+                                padding: 2px 0;
+                                margin: 5px 0;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        ${ticketPreview.outerHTML}
+                        <script>
+                            setTimeout(function() {
+                                window.print();
+                                window.close();
+                            }, 200);
+                        <\/script>
+                    </body>
+                </html>
+            `);
+            printWindow.document.close();
+            showStatus('printTicketStatus', 'Print dialog opened!');
+        } catch (error) {
+            alert(error.message);
+            console.error('Print Ticket Error:', error);
         }
+    }
 
     function handleClearAll() {
         matches = [];
