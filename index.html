@@ -53,10 +53,17 @@
             align-items: center;
             margin-bottom: 5px;
         }
-        .ticket-logo-title {
+        .ticket-logo {
             height: 50px;
-            width: auto;
-            max-width: 60mm; /* Prevent overflow */
+        }
+        .ticket-title {
+            font-size: 36px; /* Increased from 32px */
+            font-weight: 900; /* Thicker */
+            margin: 0 5px; /* Reduced space */
+            line-height: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
         }
         .ticket-qr {
             height: 70px;
@@ -263,16 +270,6 @@
             .ticket-header {
                 padding-left: 1mm !important;
             }
-            .ticket-logo-title {
-                height: 15mm !important;
-                width: auto !important;
-                max-width: 50mm !important;
-            }
-
-            /* Remove the old title styles if they exist */
-            .ticket-title {
-                display: none !important;
-            }
 
             .ticket-details {
                 padding-left: 1mm !important;
@@ -299,7 +296,6 @@
                 margin: 1mm 0 !important;
                 padding: 0 !important;
             }
-
         }
     </style>
 </head>
@@ -428,7 +424,7 @@
 
     // Image URLs (replace with your actual image paths)
     const imageUrls = {
-        logo: "https://i.ibb.co/1J65Y13f/Goldbet.jpg",
+        logo: "https://i.ibb.co/TMGzw0cT/Whats-App-Image-2025-04-02-at-7-17-24-PM.jpg",
         qrCode: "https://i.ibb.co/kgQjhSxd/qr-code.png",
         gioco: "https://i.ibb.co/htLkLfT/gioco.jpg",
         plus18: "https://i.ibb.co/cKFdcWh0/18.jpg",
@@ -696,12 +692,13 @@
         container.innerHTML = `
             <div class="ticket">
                 <div class="ticket-header">
-                    <img src="${ticketData.imageUrls.logo}" alt="GoldBet" class="ticket-logo-title">
+                    <img src="${ticketData.imageUrls.logo}" alt="Logo" class="ticket-logo">
+                    <div class="ticket-title">GoldBet</div>
                     <div>
                         <div style="font-size: 6px; font-weight: bold;">BONUS BENVENUTO ONLI</div>
                         <img src="${ticketData.imageUrls.qrCode}" alt="QR Code" class="ticket-qr">
                     </div>
-                </div>`
+                </div>
 
                 <div class="ticket-line"></div>
 
