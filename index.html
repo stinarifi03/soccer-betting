@@ -288,22 +288,15 @@
                 margin-left: -2mm !important; /* Compensate for printer offset */
             }
             .ticket-disclaimer {
-                text-align: center !important;
-                margin: 0 auto !important;
-                width: 100% !important;
-                display: block !important;
-                padding: 0 !important;
                 position: relative !important;
-                left: 0 !important;
-                transform: none !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                text-align: center !important;
+                width: 74mm !important;
+                margin: 1mm 0 !important;
+                padding: 0 !important;
             }
 
-            /* Ensure line breaks are preserved */
-            .ticket-disclaimer br {
-                content: " " !important;
-                display: block !important;
-                margin-top: 1mm !important;
-            }
         }
     </style>
 </head>
