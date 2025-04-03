@@ -214,186 +214,184 @@
             width: 100%;
         }
         @media print {
-            /* General Body Styles */
+            /* Reset everything for thermal printing */
             body {
-                margin: 0;
-                padding: 0;
-                font-family: 'Courier New', monospace !important; /* Ensure consistent font */
-                font-size: 10px !important; /* Set a consistent font size for printing */
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 80mm !important;
+                background: white !important;
+                font-family: 'Courier New', monospace !important;
+                font-size: 9px !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
-            /* Ticket Container */
+            /* Hide everything except the ticket */
+            body > *:not(.ticket-container) {
+                display: none !important;
+            }
+
+            /* Ticket container - exact thermal paper width */
             .ticket-container {
-                width: 80mm !important; /* Fixed width for thermal paper */
-                margin: 0 auto; /* Center the ticket */
-                padding: 0; /* Remove padding */
+                width: 80mm !important;
+                min-width: 80mm !important;
+                max-width: 80mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                position: relative !important;
+                left: 0 !important;
+                top: 0 !important;
             }
 
-            /* Ticket Styles */
+            /* Ticket styling - remove all spacing inconsistencies */
             .ticket {
-                width: 80mm !important; /* Ensure ticket width is fixed */
-                height: auto !important; /* Allow height to adjust based on content */
-                margin: 0 !important; /* Remove margin */
-                padding: 2mm !important; /* Adjust padding for print */
-                border: none !important; /* Remove border */
-                box-shadow: none !important; /* Remove shadow */
-                background: white !important; /* Ensure background is white */
+                width: 80mm !important;
+                min-width: 80mm !important;
+                max-width: 80mm !important;
+                margin: 0 !important;
+                padding: 2mm 3mm !important;
+                border: none !important;
+                box-shadow: none !important;
+                background: white !important;
+                color: black !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
             }
 
-            /* Header Section */
+            /* Force all elements to print exactly as shown */
+            .ticket * {
+                color: black !important;
+                background: transparent !important;
+                text-shadow: none !important;
+                box-shadow: none !important;
+            }
+
+            /* Header adjustments */
             .ticket-header {
-                display: flex; /* Use flexbox for layout */
-                justify-content: space-between; /* Space elements evenly */
-                align-items: center; /* Center items vertically */
-                margin-bottom: 5px; /* Space below header */
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                margin-bottom: 1mm !important;
+                padding: 0 !important;
+                height: 15mm !important;
             }
 
             .ticket-logo {
-                height: 50px; /* Fixed height for logo */
+                height: 15mm !important;
+                width: auto !important;
+                max-width: 30mm !important;
             }
 
             .ticket-title {
-                font-size: 24px; /* Adjust title size for print */
-                font-weight: bold; /* Make title bold */
-                margin: 0; /* Remove margin */
+                font-size: 10pt !important;
+                font-weight: 900 !important;
+                margin: 0 2mm !important;
+                line-height: 1 !important;
+                text-align: center !important;
+                flex-grow: 1 !important;
             }
 
-            /* QR Code */
             .ticket-qr {
-                height: 70px; /* Fixed height for QR code */
+                height: 20mm !important;
+                width: 20mm !important;
             }
 
-            /* Divider Line */
+            /* Divider lines */
             .ticket-line {
-                border-top: 1px solid #000; /* Solid line for separation */
-                margin: 5px 0; /* Space above and below line */
+                border-top: 0.5pt solid black !important;
+                margin: 1mm 0 !important;
+                width: 100% !important;
             }
 
-            /* Ticket Details Section */
+            /* Details section */
             .ticket-details {
-                margin: 5px 0; /* Space around details */
-                line-height: 1.2; /* Adjust line height for readability */
+                margin: 1mm 0 !important;
+                line-height: 1.1 !important;
+                padding-left: 3mm !important;
             }
 
-            .ticket-details div {
-                display: flex; /* Use flexbox for layout */
-                justify-content: space-between; /* Space items evenly */
-                white-space: nowrap; /* Prevent text wrapping */
+            .ticket-details::before {
+                height: calc(100% + 1mm) !important;
+                top: -0.5mm !important;
             }
 
-            /* Ticket Section Header */
+            /* Match sections */
+            .ticket-section {
+                margin: 1mm 0 !important;
+            }
+
             .ticket-section-header {
-                text-align: center; /* Center the section header */
-                font-weight: bold; /* Make header bold */
-                font-size: 12px; /* Adjust font size */
-                margin: 5px 0; /* Space around header */
+                font-size: 9pt !important;
+                margin: 1mm 0 !important;
             }
 
-            /* Match Section */
             .ticket-match {
-                margin: 5px 0; /* Space around each match */
-                line-height: 1.2; /* Adjust line height */
+                margin: 1mm 0 !important;
+                line-height: 1.1 !important;
             }
 
             .ticket-match-teams {
-                font-weight: bold; /* Make team names bold */
-                white-space: nowrap; /* Prevent text wrapping */
-                overflow: hidden; /* Hide overflow */
-                text-overflow: ellipsis; /* Add ellipsis for long text */
-                max-width: 70mm; /* Limit width to fit within ticket */
+                max-width: 74mm !important;
             }
 
-            /* Amount Section */
+            /* Amounts and winnings */
             .ticket-amount {
-                display: flex; /* Use flexbox for layout */
-                justify-content: space-between; /* Space items evenly */
-                margin: 3px 0; /* Space around amount */
+                margin: 0.5mm 0 !important;
             }
 
-            /* Winnings Section */
             .ticket-winnings {
-                border: 1px solid #000; /* Border around winnings */
-                height: 30px; /* Fixed height */
-                display: flex; /* Use flexbox for layout */
-                margin: 5px 0; /* Space around winnings */
+                height: 8mm !important;
+                margin: 1mm 0 !important;
+                border-width: 0.5pt !important;
             }
 
             .ticket-winnings-pattern {
-                width: 77px; /* Fixed width for pattern */
-                background: repeating-linear-gradient(
-                    to right,
-                    #000,
-                    #000 3px,
-                    transparent 3px,
-                    transparent 8px
-                ); /* Pattern for winnings */
+                width: 15mm !important;
             }
 
-            .ticket-winnings-center {
-                flex-grow: 1; /* Allow center to grow */
-                display: flex; /* Use flexbox for layout */
-                flex-direction: column; /* Stack items vertically */
-                justify-content: center; /* Center items vertically */
-                align-items: center; /* Center items horizontally */
-            }
             .ticket-winnings-label {
-                font-weight: bold; /* Make label bold */
-                font-size: 10px; /* Adjust font size */
+                font-size: 8pt !important;
             }
 
             .ticket-winnings-amount {
-                font-weight: bold; /* Make amount bold */
-                font-size: 14px; /* Adjust font size */
+                font-size: 10pt !important;
             }
 
-            /* Disclaimer Section */
-            .ticket-disclaimer {
-                font-size: 6px !important; /* Small font size for disclaimer */
-                font-weight: bold; /* Make disclaimer bold */
-                margin-top: 5px; /* Space above disclaimer */
-                line-height: 1.2; /* Adjust line height for readability */
-                text-align: center; /* Center the disclaimer text */
-                padding: 0; /* Remove padding */
-                white-space: normal !important; /* Allow disclaimer to wrap */
-            }
-
-            .ticket-disclaimer br {
-                display: block; /* Ensure line breaks are respected */
-                content: "";
-                margin-top: 2px; /* Space between lines */
-            }
-
-            /* Footer Section */
+            /* Footer elements */
             .ticket-footer {
-                display: flex; /* Use flexbox for layout */
-                justify-content: space-between; /* Space items evenly */
-                align-items: center; /* Center items vertically */
-                margin-top: 10px; /* Space above footer */
+                margin-top: 2mm !important;
             }
 
             .ticket-footer img {
-                height: 30px; /* Fixed height for footer images */
-                width: auto; /* Maintain aspect ratio */
-                display: block; /* Ensure images are block elements */
+                height: 8mm !important;
+                width: auto !important;
             }
 
-            /* Barcode Section */
             .ticket-barcode {
-                width: 260px; /* Fixed width for barcode */
-                height: 60px; /* Fixed height for barcode */
-                margin: 5px auto; /* Center barcode */
-                display: block; /* Ensure barcode is a block element */
+                width: 74mm !important;
+                height: 15mm !important;
+                margin: 1mm auto !important;
             }
 
-            /* League Header */
+            /* League headers */
             .league-header {
-                border-top: 1px solid #000; /* Top border for league header */
-                border-bottom: 1px solid #000; /* Bottom border for league header */
-                font-weight: bold; /* Make header bold */
-                text-align: center; /* Center the league name */
-                padding: 2px 0; /* Space above and below header */
-                margin: 5px auto; /* Center league names */
-                width: 100%; /* Full width */
+                margin: 1mm 0 !important;
+                padding: 0.5mm 0 !important;
+                border-width: 0.5pt !important;
+            }
+
+            /* Disclaimer text */
+            .ticket-disclaimer {
+                font-size: 6pt !important;
+                margin-top: 1mm !important;
+                line-height: 1.1 !important;
+            }
+
+            /* Print-specific page settings */
+            @page {
+                size: 80mm auto;
+                margin: 0mm;
+                padding: 0mm;
             }
         }
     </style>
