@@ -615,6 +615,15 @@
                             width: 1px;
                             background: #000;
                         }
+                        .three-column-line {
+                            display: flex;
+                            justify-content: space-between;
+                            width: 100%;
+                        }
+                        .three-column-line > div {
+                            flex: 1;
+                            text-align: center;
+                        }
                         .ticket-section {
                             margin: 5px 0;
                         }
@@ -630,6 +639,15 @@
                             display: flex;
                             justify-content: space-between;
                             margin: 2px 0;
+                        }
+                        .league-header {
+                            border-top: 1px solid #000;
+                            border-bottom: 1px solid #000;
+                            font-weight: bold;
+                            text-align: center;
+                            padding: 1px 0;
+                            margin: 3px auto;
+                            width: 100%;
                         }
                         .ticket-winnings {
                             border: 1px solid #000;
@@ -663,11 +681,13 @@
                         }
                         .ticket-footer {
                             display: flex;
-                            justify-content: space-around;
+                            justify-content: space-between;
                             margin-top: 3px;
+                            padding: 0 5mm;
                         }
                         .ticket-footer img {
                             height: 8mm;
+                            margin: 0;
                         }
                         .ticket-barcode {
                             width: 60mm;
@@ -678,14 +698,6 @@
                             font-size: 6px;
                             margin-top: 2px;
                             text-align: center;
-                        }
-                        .league-header {
-                            border-top: 1px solid #000;
-                            border-bottom: 1px solid #000;
-                            font-weight: bold;
-                            text-align: center;
-                            padding: 1px 0;
-                            margin: 3px 0;
                         }
                     </style>
                 </head>
