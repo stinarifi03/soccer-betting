@@ -213,38 +213,89 @@
             margin: 5px auto; /* Centered league names */
             width: 100%;
         }
-        @page {
-            size: 80mm 297mm;
-            margin: 0;
-            padding: 0;
-        }
         @media print {
-            body {
-                width: 80mm !important;
+            /* RESET & BASIC LAYOUT */
+            body, html {
                 margin: 0 !important;
                 padding: 0 !important;
-            }
-            .ticket {
                 width: 80mm !important;
-                max-width: 80mm !important;
-                padding: 2mm !important;
-                margin: 0 !important;
-                border: none !important;
-                font-size: 9px !important;
-            }
-            .ticket-title {
-                font-size: 9mm !important;
-            }
-            .ticket-logo, .ticket-qr {
                 height: auto !important;
-                max-height: 15mm !important;
+                background: white !important;
+                font-family: 'Courier New', monospace !important;
+                font-size: 9px !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
-            .ticket-barcode {
-                width: 60mm !important;
-                height: 15mm !important;
+
+            /* SHIFT EVERYTHING LEFT */
+            body {
+                transform: translateX(-4mm) !important;
+                position: relative !important;
+                left: 0 !important;
             }
-            .ticket-footer img {
-                height: 8mm !important;
+
+            /* TICKET CONTAINER */
+            .ticket-container {
+                width: 76mm !important; /* Slightly narrower to account for shift */
+                min-width: 76mm !important;
+                max-width: 76mm !important;
+                margin: 0 !important;
+                padding: 0 0 0 2mm !important; /* Extra left padding */
+                position: relative !important;
+                left: 0 !important;
+                overflow: visible !important;
+            }
+
+            /* TICKET BODY */
+            .ticket {
+                width: 76mm !important;
+                min-width: 76mm !important;
+                max-width: 76mm !important;
+                margin: 0 !important;
+                padding: 2mm 3mm !important;
+                border: none !important;
+                box-sizing: border-box !important;
+                position: relative !important;
+                left: -1mm !important; /* Fine-tune left positioning */
+            }
+
+            /* FORCE LEFT ALIGNMENT FOR ALL ELEMENTS */
+            .ticket * {
+                margin-left: 0 !important;
+                padding-left: 0 !important;
+                text-align: left !important;
+            }
+
+            /* SPECIFIC ELEMENT ADJUSTMENTS */
+            .ticket-header {
+                padding-left: 1mm !important;
+            }
+
+            .ticket-details {
+                padding-left: 1mm !important;
+            }
+
+            .ticket-line {
+                margin-left: -3mm !important;
+                width: 80mm !important; /* Extend lines full width */
+            }
+
+            /* PRINT SETTINGS */
+            @page {
+                size: 80mm auto;
+                margin: 0 !important;
+                padding: 0 !important;
+                margin-left: -4mm !important; /* Compensate for printer offset */
+            }
+            .ticket-disclaimer {
+                position: relative !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                text-align: center !important;
+                align-items: center;
+                width: 74mm !important;
+                margin: 1mm 0 !important;
+                padding: 0 !important;
             }
         }
     </style>
@@ -507,70 +558,75 @@
                     <head>
                         <title>Print Ticket</title>
                         <style>
-                            @page {
-                                size: 80mm 297mm;
-                                margin: 0;
-                                padding: 0;
-                            }
-                            body {
-                                margin: 0;
-                                padding: 0;
-                                width: 80mm;
-                                font-family: 'Courier New', monospace;
-                                font-size: 9px !important;
-                                -webkit-print-color-adjust: exact !important;
-                                print-color-adjust: exact !important;
-                            }
+                            body { font-family: 'Courier New', monospace; padding: 10px; }
                             .ticket {
-                                width: 80mm !important;
-                                max-width: 80mm !important;
-                                padding: 2mm !important;
-                                margin: 0 !important;
-                                border: none !important;
+                                width: 300px;
+                                border: 1px solid #000;
+                                padding: 5px;
+                                background-color: white;
+                                font-size: 10px;
+                                margin: 0 auto;
                             }
                             .ticket-header {
-                                display: flex !important;
-                                justify-content: space-between !important;
-                                margin-bottom: 1mm !important;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-bottom: 5px;
                             }
-                            .ticket-logo {
-                                height: 12mm !important;
-                                max-height: 12mm !important;
-                            }
-                            .ticket-title {
-                                font-size: 9mm !important;
-                                margin: 0 2mm !important;
-                            }
-                            .ticket-qr {
-                                height: 15mm !important;
-                                max-height: 15mm !important;
-                            }
-                            .ticket-line {
-                                border-top: 1px solid #000 !important;
-                                margin: 1mm 0 !important;
-                            }
+                            .ticket-logo { height: 50px; }
+                            .ticket-title { font-size: 30px; font-weight: bold; margin: 0 10px; }
+                            .ticket-qr { height: 70px; }
+                            .ticket-line { border-top: 1px solid #000; margin: 5px 0; }
+                            .ticket-details { margin: 5px 0; line-height: 1.2; }
+                            .ticket-section { margin: 10px 0; }
                             .ticket-section-header {
-                                font-size: 10px !important;
+                                text-align: center;
+                                font-weight: bold;
+                                font-size: 12px;
+                                margin: 5px 0;
                             }
+                            .ticket-match { margin: 5px 0; line-height: 1.2; }
+                            .ticket-match-teams { font-weight: bold; }
+                            .ticket-amount { display: flex; justify-content: space-between; margin: 3px 0; }
                             .ticket-winnings {
-                                height: 7mm !important;
+                                border: 1px solid #000;
+                                height: 30px;
+                                display: flex;
+                                margin: 5px 0;
                             }
                             .ticket-winnings-pattern {
-                                width: 15mm !important;
+                                width: 77px;
+                                background: repeating-linear-gradient(
+                                    to right,
+                                    #000,
+                                    #000 3px,
+                                    transparent 3px,
+                                    transparent 8px
+                                );
                             }
-                            .ticket-winnings-amount {
-                                font-size: 12px !important;
+                            .ticket-winnings-center {
+                                flex-grow: 1;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
                             }
-                            .ticket-footer img {
-                                height: 8mm !important;
+                            .ticket-winnings-label { font-weight: bold; font-size: 10px; }
+                            .ticket-winnings-amount { font-weight: bold; font-size: 14px; }
+                            .ticket-footer {
+                                display: flex;
+                                justify-content: space-between;
+                                margin-top: 10px;
                             }
-                            .ticket-barcode {
-                                width: 60mm !important;
-                                height: 15mm !important;
-                            }
-                            * {
-                                box-sizing: border-box;
-                                max-width: 80mm !important;
+                            .ticket-footer img { height: 30px; }
+                            .ticket-barcode { width: 260px; height: 60px; margin: 5px auto; display: block; }
+                            .ticket-disclaimer { font-size: 8px; margin-top: 5px; align-items: center; line-height: 1.2; }
+                            .league-header {
+                                border-top: 1px solid #000;
+                                border-bottom: 1px solid #000;
+                                font-weight: bold;
+                                padding: 2px 0;
+                                margin: 5px 0;
                             }
                         </style>
                     </head>
