@@ -558,6 +558,14 @@
                     <head>
                         <title>Print Ticket</title>
                         <style>
+                            .ticket-meta-line {
+                                display: flex;
+                                justify-content: space-between;
+                                margin: 2px 0;
+                            }
+                            .ticket-meta-line span {
+                                white-space: nowrap;
+                            }
                             body { font-family: 'Courier New', monospace; padding: 10px; }
                             .ticket {
                                 width: 300px;
@@ -577,7 +585,7 @@
                             .ticket-title { font-size: 32px; font-weight: bold; margin: 0 10px; }
                             .ticket-qr { height: 70px; }
                             .ticket-line { border-top: 1px solid #000; margin: 5px 0; }
-                            .ticket-details { font-size: 7px; margin: 5px 0; line-height: 1.2; }
+                            .ticket-details { margin: 5px 0; line-height: 1.2; }
                             .ticket-section { margin: 10px 0; }
                             .ticket-section-header {
                                 text-align: center;
@@ -619,7 +627,7 @@
                                 margin-top: 10px;
                                 align-items: center;
                             }
-                            .ticket-footer img { height: 30px; }
+                            .ticket-footer img { height: 40px; }
                             .ticket-barcode { width: 260px; height: 60px; margin: 5px auto; display: block; }
                             .ticket-disclaimer { font-size: 6px; margin-top: 5px; align-items: center; text-align: center; line-height: 1.2; }
                             .league-header {
@@ -709,7 +717,11 @@
                     <div>CB-${ticketData.ticketCode}</div>
                     <div class="four-column-line"> <span>CC-4098</span> <span>NC-GBO Italy S.p.A</span>  <span>PV-14274</span>  <span>TM-4</span> </div>
                     <div class="ticket-amount"> <div>NP-Lignano Sabbiadoro, Via Arcobalen</div>   <div>TG-${ticketData.tg}</div></div>
-                    <div class="three-column-line"> <div>GE-${formatDate(ticketData.date)}</div>    <div>OE-${ticketData.timestamp}</div>    <div>CG-2005376</div></div>
+                    <div class="ticket-meta-line">
+                        <span>GE-${formatDate(ticketData.date)}</span>
+                        <span>OE-${ticketData.timestamp}</span>
+                        <span>CG-2005376</span>
+                    </div>
                     <div class="ticket-amount"><div>IB-${ticketData.ib}${' '.repeat(18)}</div> <div>NS-${ticketData.ns}</div></div>
                 </div>
 
