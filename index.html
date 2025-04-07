@@ -226,7 +226,9 @@
             padding: 0 1px; /* Minimal padding */
         }
         .compact-line.flush-left {
-            display: flex;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            justify-content: start;
             gap: 8px; /* Adjust spacing between items */
             margin-left: 10px; /* Match your ticket-details padding */
             padding-right: 10px; /* Prevent overflow */
@@ -236,6 +238,7 @@
             white-space: nowrap;
             position: relative;
             padding-right: 2px;
+            left: -1px;
         }
         @media print {
             /* RESET & BASIC LAYOUT */
@@ -583,14 +586,18 @@
                         <title>Print Ticket</title>
                         <style>
                             .compact-line.flush-left {
-                                display: flex;
-                                gap: 8px;
-                                margin-left: 10px;
+                                display: grid;
+                                grid-template-columns: auto auto auto auto;
+                                justify-content: start;
+                                gap: 8px; /* Adjust spacing between items */
+                                margin-left: 10px; /* Match your ticket-details padding */
                                 padding-right: 10px;
                             }
                             .compact-line.flush-left span {
                                 white-space: nowrap;
                                 padding-right: 2px;
+                                position: relative;
+                                left: -1px
                             }
                             .compact-line {
                                 display: flex;
