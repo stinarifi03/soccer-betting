@@ -217,15 +217,22 @@
             display: flex;
             justify-content: space-between;
             width: 100%;
-            gap: 8px; /* Adjust spacing between items */
-            margin-left: 10px; /* Match your ticket-details padding */
-            padding-right: 10px;
+            margin: 2px 0;
         }
         .compact-item {
             flex: 1;
             text-align: center;
             white-space: nowrap;
             padding: 0 1px; /* Minimal padding */
+        }
+        .compact-line.flush-left {
+            display: flex;
+            gap: 8px; /* Adjust spacing between items */
+            margin-left: 10px; /* Match your ticket-details padding */
+            padding-right: 10px; /* Prevent overflow */
+        }
+
+        .compact-line.flush-left span {
             white-space: nowrap;
             position: relative;
             padding-right: 2px;
@@ -575,6 +582,16 @@
                     <head>
                         <title>Print Ticket</title>
                         <style>
+                            .compact-line.flush-left {
+                                display: flex;
+                                gap: 8px;
+                                margin-left: 10px;
+                                padding-right: 10px;
+                            }
+                            .compact-line.flush-left span {
+                                white-space: nowrap;
+                                padding-right: 2px;
+                            }
                             .compact-line {
                                 display: flex;
                                 justify-content: space-between;
@@ -744,11 +761,11 @@
 
                 <div class="ticket-details">
                     <div>CB-${ticketData.ticketCode}</div>
-                    <div class="compact-line">
-                        <span class="compact-item">CC-4098</span>
-                        <span class="compact-item">NC-GBO Italy S.p.A</span>
-                        <span class="compact-item">PV-14274</span>
-                        <span class="compact-item">TM-4</span>
+                    <div class="compact-line flush-left">
+                        <span>CC-4098</span>
+                        <span>NC-GBO Italy S.p.A</span>
+                        <span>PV-14274</span>
+                        <span>TM-4</span>
                     </div>
                     <div class="ticket-amount"> <div>NP-Lignano Sabbiadoro, Via Arcobalen</div>   <div>TG-${ticketData.tg}</div></div>
                     <div class="ticket-meta-line">
