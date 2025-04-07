@@ -585,19 +585,21 @@
                     <head>
                         <title>Print Ticket</title>
                         <style>
-                            .compact-line.flush-left {
-                                display: grid;
-                                grid-template-columns: auto auto auto auto;
-                                justify-content: start;
-                                gap: 8px; /* Adjust spacing between items */
-                                margin-left: 10px; /* Match your ticket-details padding */
+                            .flush-left-line {
+                                display: flex;
+                                justify-content: space-between;
+                                width: calc(100% - 20px);
+                                margin-left: 10px;
                                 padding-right: 10px;
                             }
-                            .compact-line.flush-left span {
+                            .flush-left-line .flush-item {
                                 white-space: nowrap;
-                                padding-right: 2px;
-                                position: relative;
-                                left: -1px
+                            }
+                            .flush-left-line .flush-item:first-child {
+                                text-align: left;
+                            }
+                            .flush-left-line .flush-item:last-child {
+                                text-align: right;
                             }
                             .compact-line {
                                 display: flex;
