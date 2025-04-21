@@ -452,12 +452,12 @@
 
     // Image URLs (replace with your actual image paths)
     const imageUrls = {
-        logo: "https://i.ibb.co/6JD3Jsbm/6658-F158-B753-497-A-93-D9-0740-EB9563-DB.png",
+        logo: "https://i.ibb.co/3yL54P41/logo-fund.png",
         qrCode: "https://i.ibb.co/kgQjhSxd/qr-code.png",
         gioco: "https://i.ibb.co/dJ5DSrZ9/pfpf.jpg",
         plus18: "https://i.ibb.co/5XD4LdZj/tyty.jpg",
         amdTimone: "https://i.ibb.co/tPWw7D9s/amd-timone.png",
-        adm: "https://i.ibb.co/gZs7ykyX/adm.jpg",
+        adm: "https://i.ibb.co/KcQqsrDp/adddmmm.jpg",
         get barcode() {
             const canvas = document.createElement("canvas");
             JsBarcode(canvas, document.getElementById('ticketCodeField').value || "TICKET", {
@@ -640,16 +640,16 @@
                             .ticket-title { font-size: 34px; font-weight: 900; margin: 0 10px; font-family: sans-serif; }
                             .ticket-qr { height: 70px; }
                             .ticket-line { border-top: 1px solid #000; margin: 5px 0; }
-                            .ticket-details { margin: 5px 0; line-height: 1.2; }
+                            .ticket-details { margin: 5px 0; line-height: 1.2; font-weight: bold !important; }
                             .ticket-section { margin: 10px 0; }
                             .ticket-section-header {
                                 text-align: center;
-                                font-weight: bold;
+                                font-weight: bold !important;
                                 font-size: 12px;
                                 margin: 5px 0;
                             }
                             .ticket-match { margin: 5px 0; line-height: 1.2; }
-                            .ticket-match-teams { font-weight: bold; }
+                            .ticket-match-teams { font-weight: bold !important; }
                             .ticket-amount { display: flex; justify-content: space-between; margin: 3px 0; }
                             .ticket-winnings {
                                 border: 1px solid #000;
@@ -674,8 +674,8 @@
                                 justify-content: center;
                                 align-items: center;
                             }
-                            .ticket-winnings-label { font-weight: bold; font-size: 10px; }
-                            .ticket-winnings-amount { font-weight: bold; font-size: 14px; }
+                            .ticket-winnings-label { font-weight: bold !important; font-size: 10px; }
+                            .ticket-winnings-amount { font-weight: bold !important; font-size: 14px; }
                             .ticket-footer {
                                 display: flex;
                                 justify-content: center;
@@ -684,12 +684,12 @@
                             }
                             .ticket-footer img { height: 40px; }
                             .ticket-barcode { width: 260px; height: 80px; margin: 5px auto; display: block; }
-                            .ticket-disclaimer { font-size: 6px; margin-top: 5px; align-items: center; text-align: center; line-height: 1.2; }
+                            .ticket-disclaimer { font-size: 6px; font-weight: bold !important; margin-top: 5px; align-items: center; text-align: center; line-height: 1.2; }
                             .league-header {
                                 text-align: center;
                                 border-top: 1px solid #000;
                                 border-bottom: 1px solid #000;
-                                font-weight: bold;
+                                font-weight: bold !important;
                                 padding: 2px 0;
                                 margin: 5px 0;
                             }
