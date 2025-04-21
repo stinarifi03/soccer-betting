@@ -680,14 +680,25 @@
                             .ticket-winnings-amount { font-weight: bold !important; font-size: 14px; }
                             .ticket-footer {
                                 display: flex;
-                                justify-content: space-evenly; /* Distribute space evenly */
+                                justify-content: space-between; /* Force tight packing */
                                 align-items: center;
                                 margin-top: 10px;
-                                gap: 0px !important; /* Space between images */
-                                flex-wrap: nowrap; /* Prevent wrapping */
-                                width: 100%; /* Full container width */
+                                gap: 0 !important; /* Zero gap between images */
+                                padding: 0 !important; /* Remove all padding */
+                                width: 210px !important; /* Fixed container width */
+                                margin-left: auto !important;
+                                margin-right: auto !important;
                             }
-                            .ticket-footer img { height: 35px !important; width: auto !important; max-width: 60px !important; margin: 0 !important; }
+
+                            .ticket-footer img {
+                                height: 35px !important;
+                                width: auto !important;
+                                max-width: 52px !important; /* Adjusted to fit 4 images in 210px */
+                                margin: 0 !important; /* Remove all margins */
+                                padding: 0 !important; /* Remove all padding */
+                                object-fit: contain; /* Prevent distortion */
+                                flex-shrink: 1; /* Allow slight squeezing if needed */
+                            }
                             .ticket-barcode { width: 260px; height: 80px; margin: 5px auto; display: block; }
                             .ticket-disclaimer { font-size: 6px; font-weight: bold !important; margin-top: 5px; align-items: center; text-align: center; line-height: 1.2; }
                             .league-header {
