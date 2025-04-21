@@ -693,11 +693,15 @@
                             .ticket-footer img {
                                 height: 35px !important;
                                 width: auto !important;
-                                max-width: 52px !important; /* Adjusted to fit 4 images in 210px */
+                                max-width: 48px !important; /* Adjusted to fit 4 images in 210px */
                                 margin: 0 !important; /* Remove all margins */
                                 padding: 0 !important; /* Remove all padding */
                                 object-fit: contain; /* Prevent distortion */
                                 flex-shrink: 1; /* Allow slight squeezing if needed */
+                            }
+                            .ticket-footer img:last-child {
+                                height: 42px !important; /* 20% taller */
+                                max-width: 65px !important; /* 44% wider */
                             }
                             .ticket-barcode { width: 260px; height: 80px; margin: 5px auto; display: block; }
                             .ticket-disclaimer { font-size: 6px; font-weight: bold !important; margin-top: 5px; align-items: center; text-align: center; line-height: 1.2; }
