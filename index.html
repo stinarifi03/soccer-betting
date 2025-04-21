@@ -679,11 +679,14 @@
                             .ticket-winnings-amount { font-weight: bold !important; font-size: 14px; }
                             .ticket-footer {
                                 display: flex;
-                                justify-content: center;
-                                margin-top: 10px;
+                                justify-content: space-evenly; /* Distribute space evenly */
                                 align-items: center;
+                                margin-top: 10px;
+                                gap: 5px; /* Space between images */
+                                flex-wrap: nowrap; /* Prevent wrapping */
+                                width: 100%; /* Full container width */
                             }
-                            .ticket-footer img { height: 35px; width: 190px }
+                            .ticket-footer img { height: 35px; width: auto; max-width: 60px; margin: 0 2px; }
                             .ticket-barcode { width: 260px; height: 80px; margin: 5px auto; display: block; }
                             .ticket-disclaimer { font-size: 6px; font-weight: bold !important; margin-top: 5px; align-items: center; text-align: center; line-height: 1.2; }
                             .league-header {
