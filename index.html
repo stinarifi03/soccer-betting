@@ -699,7 +699,7 @@
                                 object-fit: contain; /* Prevent distortion */
                                 flex-shrink: 1; /* Allow slight squeezing if needed */
                             }
-                            .ticket-footer img:last-child {
+                            .ticket-footer img.last-footer-image {
                                 height: 42px !important; /* 20% taller */
                                 max-width: 65px !important; /* 44% wider */
                             }
@@ -852,7 +852,7 @@
                     <img src="${ticketData.imageUrls.gioco}" alt="Gioco">
                     <img src="${ticketData.imageUrls.plus18}" alt="+18">
                     <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone">
-                    <img src="${ticketData.imageUrls.adm}" alt="ADM">
+                    <img class="last-footer-image" src="${ticketData.imageUrls.adm}" alt="ADM">
                 </div>
 
                 <img src="${ticketData.imageUrls.barcode}" alt="Barcode" class="ticket-barcode">
