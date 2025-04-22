@@ -117,18 +117,19 @@
             display: flex;
             justify-content: space-between;
             margin: 3px 0;
-            font-size: 13px !important;
+            font-size: 15px !important;
         }
         .ticket-winnings {
             border: 1px solid #000;
             border-left: 1px solid #000 !important; /* Added vertical lines */
             border-right: 1px solid #000 !important;
-            height: 30px;
+            height: 40px;
             display: flex;
             margin: 5px 0;
         }
         .ticket-winnings-pattern {
             width: 77px;
+            height: 100%;
             background: repeating-linear-gradient(
                 to right,
                 #000,
@@ -146,11 +147,11 @@
         }
         .ticket-winnings-label {
             font-weight: bold;
-            font-size: 10px;
+            font-size: 14px !important;
         }
         .ticket-winnings-amount {
             font-weight: bold;
-            font-size: 14px;
+            font-size: 20px !important;
         }
         .ticket-footer {
             display: flex;
@@ -394,7 +395,7 @@
         </div>
         <div class="form-group">
             <label>Date (GE):</label>
-            <input type="date" class="form-control" id="matchDatePicker">
+            <input type="text" class="form-control" id="matchDatePicker">
         </div>
 
         <!-- Right Column: Match Metadata -->
@@ -638,8 +639,8 @@
                                 margin-bottom: 5px;
                                 padding: 0 5px; /* Match screen styling */
                             }
-                            .ticket-logo { height: 50px; margin-right: 5px; }
-                            .ticket-title { font-size: 36px; font-weight: 900; margin: 0 5px 0 0; font-family: sans-serif; }
+                            .ticket-logo { height: 40px; margin-right: 5px; }
+                            .ticket-title { font-size: 38px; font-weight: 1100; margin: 0 5px 0 0; font-family: sans-serif; }
                             .ticket-qr { height: 70px; }
                             .ticket-line { border-top: 1px solid #000; margin: 5px 0; }
                             .ticket-details { margin: 5px 0; line-height: 1.2; font-weight: bold !important; }
