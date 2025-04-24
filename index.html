@@ -246,6 +246,15 @@
             padding-right: 2px;
             left: -1px;
         }
+        .large-amount {
+          font-size: 14px !important;  /* Increased from ~9px */
+          font-weight: bolder !important;
+          margin: 5px 0 !important;  /* Adjust spacing as needed */
+        }
+
+        .large-amount div {
+          font-size: inherit !important;
+        }
         @media print {
             /* RESET & BASIC LAYOUT */
             body, html {
@@ -709,7 +718,7 @@
                                 height: 42px !important; /* 20% taller */
                                 max-width: 70px !important; /* 44% wider */
                             }
-                            .ticket-barcode { width: 260px; height: 80px; margin: 5px auto; display: block; }
+                            .ticket-barcode { width: 260px; height: 90px; margin: 5px auto; display: block; }
                             .ticket-disclaimer { font-size: 6px; font-weight: bold !important; margin-top: 5px; align-items: center; text-align: center; line-height: 1.2; }
                             .league-header {
                                 text-align: center;
@@ -828,13 +837,13 @@
                     `).join('')}
                 </div>
 
-                <div class="ticket-amount">
-                    <div>IMPORTO SCOMMESSO</div>
-                    <div>${formatNumber(ticketData.betAmount)} €</div>
+                <div class="ticket-amount large-amount">
+                  <div>IMPORTO SCOMMESSO</div>
+                  <div>${formatNumber(ticketData.betAmount)} €</div>
                 </div>
 
                 ${ticketData.bonusAmount > 0 ? `
-                <div class="ticket-amount">
+                <div class="ticket-amount large-amount">
                     <div>BONUS</div>
                     <div>${formatNumber(ticketData.bonusAmount)} €</div>
                 </div>
