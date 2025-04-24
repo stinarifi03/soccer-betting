@@ -51,7 +51,7 @@
             display: flex;
             justify-content: space-around; /* Changed from space-between */
             align-items: center;
-            margin-bottom: 5px;
+            margin-bottom: 5px !important;
         }
         .ticket-logo {
             height: 50px;
@@ -76,7 +76,7 @@
         .ticket-details {
             position: relative;
             padding-left: 10px;
-            margin: 5px 0;
+            margin: 5px 0 !important;
             line-height: 1.2;
         }
         .ticket-details::before {
@@ -100,7 +100,7 @@
             text-align: center;
             font-weight: bold;
             font-size: 12px;
-            margin: 2px 0;
+            margin: 2px 0 !important;
             padding: 0 !important;
         }
         .ticket-match {
@@ -158,7 +158,7 @@
             display: flex;
             justify-content: space-evenly; /* Changed from center */
             align-items: center;
-            margin-top: 2px;
+            margin-top: 2px !important;
             gap: 0; /* Removed space between images */
         }
         .ticket-footer img {
@@ -169,16 +169,16 @@
         .ticket-barcode {
             width: 260px;
             height: 60px;
-            margin-top: 2px auto;
-            margin-bottom: 2px auto;
+            margin-top: 2px auto !important;
+            margin-bottom: 2px auto !important;
             display: block;
         }
         .ticket-disclaimer {
             font-size: 6px !important;
             font-weight: bold;
             margin-top: 5px;
-            margin-bottom: 2px;
-            padding-bottom: 0;
+            margin-bottom: 2px !important;
+            padding-bottom: 0 !important;
             line-height: 1.2;
             text-align: center;
             padding: 0;
