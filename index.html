@@ -412,7 +412,7 @@
         </div>
         <div class="form-group">
             <label>Date (GE):</label>
-            <input type="text" class="form-control" id="matchDatePicker" placeholder="DD/MM/YYYY">
+            <input type="date" class="form-control" id="matchDatePicker" placeholder="DD/MM/YYYY">
         </div>
 
         <!-- Right Column: Match Metadata -->
@@ -920,19 +920,8 @@
     }
 
     function formatDate(dateString) {
-        // If it's already in DD/MM/YYYY format, return as-is
-        if (/^\d{2}\/\d{2}\/\d{4}$/.test(dateString)) {
-            return dateString;
-        }
-
-        // Try to parse as Date object if it's in another format
         const date = new Date(dateString);
-        if (!isNaN(date)) {
-            return date.toLocaleDateString('en-GB').replace(/\//g, '/');
-        }
-
-        // Fallback to raw string
-        return dateString;
+        return date.toLocaleDateString('en-GB').replace(/\//g, '/');
     }
 
     // Make removeMatch available globally for the inline onclick
