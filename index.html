@@ -602,6 +602,7 @@
             printWindow.document.write(`
                 <html>
                     <head>
+                        /*<link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">*/
                         <title>Print Ticket</title>
                         <style>
                             .flush-left-line {
@@ -643,7 +644,7 @@
                             body { font-family: 'Courier New', monospace; padding: 10px; }
                             .ticket {
                                 width: 300px;
-                                /*border: 1px solid #000;*/
+                                border: 1px solid #000;
                                 padding: 5px;
                                 background-color: white;
                                 font-size: 10px;
@@ -657,7 +658,7 @@
                                 padding: 0 5px;
                             }
                             .ticket-logo { height: 40px; margin-right: 5px; }
-                            .ticket-title { font-size: 42px; font-weight: 1500; margin: 0 5px 0 0; font-family: sans-serif; letter-spacing: -2px; text-rendering: optimizeLegibility;}
+                            .ticket-title { font-size: 42px; font-weight: 1500; margin: 0 5px 0 0; font-family: "Lantinghei TC Heavy", sans-serif !important; letter-spacing: -2px; text-rendering: optimizeLegibility;}
                             .ticket-qr { height: 70px; }
                             .ticket-line { border-top: 1px solid #000; margin: 3px 0; /* Reduced from 5px */ }
                             .ticket-details {
@@ -755,7 +756,7 @@
                             }
                             .ticket-disclaimer {
                                 font-size: 6px;
-                                font-weight: bold !important;
+                                font-weight: 500 !important;
                                 margin-top: 3px !important; /* Reduced from 5px */
                                 align-items: center;
                                 text-align: center;
