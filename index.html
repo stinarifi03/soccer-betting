@@ -598,11 +598,20 @@
                 throw new Error('Please generate a ticket first!');
             }
 
+            // Create a modified version of the ticket HTML
+            const modifiedTicketHTML = ticketPreview.outerHTML.replace(
+                /(<div class="ticket-amount large-amount">\s*<div>IMPORTO SCOMMESSO<\/div>\s*<div>[\d,]+ €<\/div>\s*<\/div>)/,
+                '<div class="ticket-amount large-amount" style="font-size:18px !important; font-weight:bolder !important; margin:5px 0 !important;">' +
+                '<div>IMPORTO SCOMMESSO</div>' +
+                '<div>' + ticketPreview.querySelector('.ticket-amount.large-amount div:nth-child(2)').textContent + '</div>' +
+                '</div>'
+            );
+
             const printWindow = window.open('', '_blank');
             printWindow.document.write(`
                 <html>
                     <head>
-                        /*<link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">*/
+                        <link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">
                         <title>Print Ticket</title>
                         <style>
                             .flush-left-line {
@@ -756,7 +765,7 @@
                             }
                             .ticket-disclaimer {
                                 font-size: 6px;
-                                font-weight: 500 !important;
+                                font-weight: 900 !important;
                                 margin-top: 3px !important; /* Reduced from 5px */
                                 align-items: center;
                                 text-align: center;
