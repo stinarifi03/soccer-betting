@@ -64,6 +64,7 @@
             height: 50px;
             display: flex;
             align-items: center;
+            font-family: "Lantinghei TC Heavy", sans-serif !important;
         }
         .ticket-qr {
             height: 70px;
@@ -667,7 +668,7 @@
                                 padding: 0 5px;
                             }
                             .ticket-logo { height: 40px; margin-right: 5px; }
-                            .ticket-title { font-size: 42px; font-weight: 1500; margin: 0 5px 0 0; font-family: "Lantinghei TC Heavy", sans-serif !important; letter-spacing: -2px; text-rendering: optimizeLegibility;}
+                            .ticket-title { font-size: 42px; font-weight: 1500; margin: 0 5px 0 0; font-family: "Lantinghei TC Heavy", sans-serif !important; letter-spacing: -2px; text-rendering: optimizeLegibility; font-family: "Lantinghei TC Heavy", sans-serif !important;}
                             .ticket-qr { height: 70px; }
                             .ticket-line { border-top: 1px solid #000; margin: 3px 0; /* Reduced from 5px */ }
                             .ticket-details {
@@ -779,6 +780,11 @@
                                 padding: 2px 0;
                                 margin: 3px 0 !important; /* Reduced from 5px */
                             }
+                            .ticket-amount.large-amount {
+                                font-size: 18px !important;
+                                font-weight: bolder !important;
+                                margin: 5px 0 !important;
+                            }
                         </style>
                     </head>
                     <body>
@@ -867,6 +873,10 @@
                         <span>GE-${formatDate(ticketData.date)}</span>
                         <span>OE-${ticketData.timestamp}</span>
                         <span>CG-2005376</span>
+                    </div>
+                    <div class="ticket-amount large-amount" style="font-size:18px !important; font-weight:bolder !important; margin:5px 0 !important;">
+                      <div>IMPORTO SCOMMESSO</div>
+                      <div>${formatNumber(ticketData.betAmount)} €</div>
                     </div>
                     <div class="ticket-amount"><div>IB-${ticketData.ib}${' '.repeat(18)}</div> <div>NS-${ticketData.ns}</div></div>
                 </div>
