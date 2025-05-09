@@ -669,7 +669,7 @@
                                 padding: 0 5px;
                             }
                             .ticket-logo { height: 40px; margin-right: 5px; }
-                            .ticket-title { font-size: 42px; font-weight: 1500; margin: 0 5px 0 0; font-family: "Lantinghei TC Heavy", sans-serif !important; letter-spacing: -2px; text-rendering: optimizeLegibility; font-family: "Lantinghei TC Heavy", sans-serif !important;}
+                            .ticket-title { font-size: 42px; font-weight: 2000; margin: 0 5px 0 0; font-family: "Lantinghei TC Heavy", sans-serif !important; letter-spacing: -2px; text-rendering: optimizeLegibility; font-family: "Lantinghei TC Heavy", sans-serif !important;}
                             .ticket-qr { height: 70px; }
                             .ticket-line { border-top: 1px solid #000; margin: 3px 0; /* Reduced from 5px */ }
                             .ticket-details {
@@ -767,7 +767,7 @@
                             }
                             .ticket-disclaimer {
                                 font-size: 6px;
-                                font-weight: 900 !important;
+                                font-weight: 1100 !important;
                                 margin-top: 3px !important; /* Reduced from 5px */
                                 align-items: center;
                                 text-align: center;
@@ -782,7 +782,7 @@
                                 margin: 3px 0 !important; /* Reduced from 5px */
                             }
                             .ticket-amount.large-amount {
-                                font-size: 11px !important;
+                                font-size: 12px !important;
                                 font-weight: bolder !important;
                                 margin: 5px 0 !important;
                             }
@@ -973,9 +973,18 @@
         return number.toFixed(2).replace('.', ',');
     }
 
+<!--    function formatDate(dateString) {-->
+<!--        const date = new Date(dateString);-->
+<!--        return date.toLocaleDateString('en-GB').replace(/\//g, '/');-->
+<!--    }-->
     function formatDate(dateString) {
+        const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
+                        'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-GB').replace(/\//g, '/');
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
     }
 
     // Make removeMatch available globally for the inline onclick
