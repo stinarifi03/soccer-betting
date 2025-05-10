@@ -479,6 +479,7 @@
         plus18: "https://i.ibb.co/5XD4LdZj/tyty.jpg",
         amdTimone: "https://i.ibb.co/7tqYPVg4/30d37fc6-90d6-4641-b589-c171e6c6b136.jpg",
         adm: "https://i.ibb.co/KcQqsrDp/adddmmm.jpg",
+        title: "https://i.ibb.co/spL1p47B/6db9b7f1-1ac8-4b30-9925-07b9a890ba72.jpg",
         get barcode() {
             const canvas = document.createElement("canvas");
             JsBarcode(canvas, document.getElementById('ticketCodeField').value || "TICKET", {
@@ -616,6 +617,10 @@
                         <link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">
                         <title>Print Ticket</title>
                         <style>
+                            .ticket-title-image {
+                                height: 50px !important;
+                                margin: 0 5px !important;
+                            }
                             .flush-left-line {
                                 display: flex;
                                 justify-content: space-between;
@@ -669,7 +674,7 @@
                                 padding: 0 5px;
                             }
                             .ticket-logo { height: 40px; margin-right: 5px; }
-                            .ticket-title { font-size: 42px; font-weight: 2000; margin: 0 5px 0 0; font-family: "Lantinghei TC Heavy", sans-serif !important; letter-spacing: -2px; text-rendering: optimizeLegibility; font-family: "Lantinghei TC Heavy", sans-serif !important;}
+<!--                            .ticket-title { font-size: 42px; font-weight: 2000; margin: 0 5px 0 0; font-family: "Lantinghei TC Heavy", sans-serif !important; letter-spacing: -2px; text-rendering: optimizeLegibility; font-family: "Lantinghei TC Heavy", sans-serif !important;}-->
                             .ticket-qr { height: 70px; }
                             .ticket-line { border-top: 1px solid #000; margin: 3px 0; /* Reduced from 5px */ }
                             .ticket-details {
@@ -852,7 +857,12 @@
             <div class="ticket">
                 <div class="ticket-header">
                     <img src="${ticketData.imageUrls.logo}" alt="Logo" class="ticket-logo">
-                    <div class="ticket-title">GoldBet</div>
+<!--                    <div class="ticket-title">GoldBet</div>-->
+                    <img src="https://i.ibb.co/spL1p47B/6db9b7f1-1ac8-4b30-9925-07b9a890ba72.jpg"
+                         alt="GoldBet"
+                         class="ticket-title-image"
+                         style="height: 50px; margin: 0 5px;">
+                    <div>
                     <div>
                         <div style="font-size: 6px; font-weight: bold;">BONUS BENVENUTO ONLI</div>
                         <img src="${ticketData.imageUrls.qrCode}" alt="QR Code" class="ticket-qr">
@@ -863,15 +873,21 @@
 
                 <div class="ticket-details">
                     <div>CB-${ticketData.ticketCode}</div>
-                    <div class="flush-left-line">
-                        <span class="flush-item">CC-4098</span>
-                        <span class="flush-item">NC-GBO Italy S.p.A</span>
-                        <span class="flush-item">PV-14274</span>
-                        <span class="flush-item">TM-4</span>
+<!--                    <div class="flush-left-line">-->
+<!--                        <span class="flush-item">CC-4098</span>-->
+<!--                        <span class="flush-item">NC-GBO Italy S.p.A</span>-->
+<!--                        <span class="flush-item">PV-14274</span>-->
+<!--                        <span class="flush-item">TM-4</span>-->
+<!--                        <span>CC-4098  NC-GBO Italy S.p.A  PV-14274  TM-4</span>-->
+<!--                    </div>-->
+                    <div class="ticket-meta-line">
+                        <span> CC-4098 </span>
+                        <span> NC-GBO Italy S.p.A </span>
+                        <span> PV-14274 </span>
+                        <span> TM-4 </span>
                     </div>
                     <div class="ticket-amount"> <div>NP-Lignano Sabbiadoro, Via Arcobalen</div>   <div>TG-${ticketData.tg}</div></div>
                     <div class="ticket-meta-line">
-                        <span>CC-4098  NC-GBO Italy S.p.A  PV-14274  TM-4</span>
                         <span>GE-${formatDate(ticketData.date)}</span>
                         <span>OE-${ticketData.timestamp}</span>
                         <span>CG-2005376</span>
