@@ -655,7 +655,7 @@
                             body { font-family: 'Courier New', monospace; padding: 10px; }
                             .ticket {
                                 width: 300px;
-                                border: 1px solid #000;
+<!--                                border: 1px solid #000;-->
                                 padding: 5px;
                                 background-color: white;
                                 font-size: 10px;
@@ -871,6 +871,7 @@
                     </div>
                     <div class="ticket-amount"> <div>NP-Lignano Sabbiadoro, Via Arcobalen</div>   <div>TG-${ticketData.tg}</div></div>
                     <div class="ticket-meta-line">
+                        <span>CC-4098  NC-GBO Italy S.p.A  PV-14274  TM-4</span>
                         <span>GE-${formatDate(ticketData.date)}</span>
                         <span>OE-${ticketData.timestamp}</span>
                         <span>CG-2005376</span>
@@ -978,8 +979,8 @@
 <!--        return date.toLocaleDateString('en-GB').replace(/\//g, '/');-->
 <!--    }-->
     function formatDate(dateString) {
-        const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
-                        'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+        const months = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu',
+                        'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
         const date = new Date(dateString);
         const day = date.getDate();
         const month = months[date.getMonth()];
