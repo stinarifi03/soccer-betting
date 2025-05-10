@@ -479,6 +479,7 @@
         plus18: "https://i.ibb.co/5XD4LdZj/tyty.jpg",
         amdTimone: "https://i.ibb.co/7tqYPVg4/30d37fc6-90d6-4641-b589-c171e6c6b136.jpg",
         adm: "https://i.ibb.co/KcQqsrDp/adddmmm.jpg",
+        title: "https://i.ibb.co/spL1p47B/6db9b7f1-1ac8-4b30-9925-07b9a890ba72.jpg",
         get barcode() {
             const canvas = document.createElement("canvas");
             JsBarcode(canvas, document.getElementById('ticketCodeField').value || "TICKET", {
@@ -616,6 +617,10 @@
                         <link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">
                         <title>Print Ticket</title>
                         <style>
+                            .ticket-title-image {
+                                height: 50px !important;
+                                margin: 0 5px !important;
+                            }
                             .flush-left-line {
                                 display: flex;
                                 justify-content: space-between;
@@ -852,7 +857,11 @@
             <div class="ticket">
                 <div class="ticket-header">
                     <img src="${ticketData.imageUrls.logo}" alt="Logo" class="ticket-logo">
-                    <div class="ticket-title">GoldBet</div>
+<!--                    <div class="ticket-title">GoldBet</div>-->
+                    <img src="https://i.ibb.co/your-image-path/goldbet-logo.png"
+                         alt="GoldBet"
+                         class="ticket-title-image"
+                         style="height: 50px; margin: 0 5px;">
                     <div>
                         <div style="font-size: 6px; font-weight: bold;">BONUS BENVENUTO ONLI</div>
                         <img src="${ticketData.imageUrls.qrCode}" alt="QR Code" class="ticket-qr">
