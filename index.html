@@ -5,6 +5,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">
     <style>
+        .detail-line {
+            display: flex;
+            justify-content: space-between; /* Equal space distribution */
+            width: 100%;
+            margin: 2px 0 !important;
+        }
+
+        .detail-item {
+            white-space: nowrap;
+            flex: 1; /* Each item takes equal space */
+            text-align: center;
+            position: relative;
+        }
         .bet-odds-row {
             display: flex;
             width: 100%;
@@ -637,6 +650,15 @@
                         <link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">
                         <title>Print Ticket</title>
                         <style>
+                            .detail-line {
+                                display: flex !important;
+                                justify-content: space-between !important;
+                                width: 100% !important;
+                            }
+                            .detail-item {
+                                flex: 1 !important;
+                                text-align: center !important;
+                            }
                             .bet-odds-row {
                                 display: flex;
                                 width: 100%;
@@ -813,7 +835,7 @@
                             }
                             .ticket-barcode {
                                 width: 260px;
-                                height: 90px;
+                                height: 80px;
                                 margin: 2px auto !important; /* Reduced from 5px */
                                 display: block;
                                 margin-top: 0 !important;    /* Remove top margin */
@@ -923,11 +945,11 @@
 
                 <div class="ticket-details">
                     <div>CB-${ticketData.ticketCode}</div>
-                    <div class="flush-left-line">
-                        <span class="flush-item">CC-4098</span>
-                        <span class="flush-item">NC-GBO Italy S.p.A</span>
-                        <span class="flush-item">PV-14274</span>
-                        <span class="flush-item">TM-4</span>
+                    <div class="detail-line">
+                        <span class="detail-item">CC-4098</span>
+                        <span class="detail-item">NC-GBO Italy S.p.A</span>
+                        <span class="detail-item">PV-14274</span>
+                        <span class="detail-item">TM-4</span>
                     </div>
                     <div class="ticket-amount"> <div>NP-Lignano Sabbiadoro, Via Arcobalen</div>   <div>TG-${ticketData.tg}</div></div>
                     <div class="ticket-meta-line">
