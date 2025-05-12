@@ -790,12 +790,13 @@
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: center;
-                                margin-top: 2px !important; /* Reduced from 10px */
+<!--                                margin-top: 2px !important; /* Reduced from 10px */-->
                                 gap: 0 !important;
                                 padding: 0 !important;
                                 width: 210px !important;
                                 margin-left: auto !important;
                                 margin-right: auto !important;
+                                margin-top: 0 !important;
                             }
                             .ticket-footer img {
                                 height: 35px !important;
@@ -815,6 +816,10 @@
                                 height: 90px;
                                 margin: 2px auto !important; /* Reduced from 5px */
                                 display: block;
+                                margin-top: 0 !important;    /* Remove top margin */
+                                margin-bottom: 0 !important; /* Remove bottom margin */
+                                padding-top: 1px !important; /* Minimal padding if needed */
+                                padding-bottom: 1px !important;
                             }
                             .ticket-disclaimer {
                                 font-size: 6px;
