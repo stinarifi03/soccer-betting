@@ -6,54 +6,24 @@
     <link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">
     <style>
         .bet-odds-row {
-            display: grid;
-            grid-template-columns: auto auto auto; /* Three columns */
+            display: flex;
             width: 100%;
         }
 
         .bet-type {
-            text-align: left;
+            flex: 1; /* Takes remaining space */
             white-space: nowrap;
-            padding-right: 10px; /* Space after bet type */
+            text-align: left;
         }
 
         .bet-chosen {
-            text-align: right;
-            padding-right: 4ch; /* 4 spaces before odds */
-            min-width: 30px; /* Prevents squeezing */
+            padding-right: 0; /* Remove default padding */
+            white-space: pre; /* Preserves spaces */
         }
 
         .odds-value {
-            text-align: right;
-            font-weight: bold;
             width: 50px; /* Fixed width for odds */
-        }
-        .bet-chosen-spacer {
-            flex-grow: 1; /* Pushes bet-chosen right */
-            min-width: 20px; /* Minimum space before bet-chosen */
-        }
-        .bet-odds-row {
-            display: grid;
-            grid-template-columns: 45% 30% 25%; /* Adjust percentages as needed */
-            width: 100%;
-            align-items: center;
-        }
-
-        .bet-odds-row .bet-type {
-            text-align: left;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .bet-odds-row .bet-chosen {
-            text-align: left;
-            padding-left: 10px;
-        }
-
-        .bet-odds-row .odds-value {
             text-align: right;
-            font-weight: bold;
         }
         body {
             padding: 20px;
@@ -668,27 +638,24 @@
                         <title>Print Ticket</title>
                         <style>
                             .bet-odds-row {
-                                display: grid;
-                                grid-template-columns: auto auto auto; /* Three columns */
+                                display: flex;
                                 width: 100%;
                             }
 
                             .bet-type {
-                                text-align: left;
+                                flex: 1; /* Takes remaining space */
                                 white-space: nowrap;
-                                padding-right: 10px; /* Space after bet type */
+                                text-align: left;
                             }
 
                             .bet-chosen {
-                                text-align: right;
-                                padding-right: 4ch; /* 4 spaces before odds */
-                                min-width: 30px; /* Prevents squeezing */
+                                padding-right: 0; /* Remove default padding */
+                                white-space: pre; /* Preserves spaces */
                             }
 
                             .odds-value {
-                                text-align: right;
-                                font-weight: bold;
                                 width: 50px; /* Fixed width for odds */
+                                text-align: right;
                             }
                             .ticket-title-image {
                                 height: 65px !important;
@@ -981,7 +948,7 @@
                                 <div class="ticket-match-teams">${match.team1} - ${match.team2}</div>
                                 <div class="ticket-amount bet-odds-row">
                                     <div class="bet-type">${match.betType}</div>
-                                    <div class="bet-chosen">${match.betChosen}</div>
+                                    <div class="bet-chosen">${match.betChosen}    </div> <!-- 4 spaces -->
                                     <div class="odds-value">${formatNumber(match.odds)}</div>
                                 </div>
                             </div>
