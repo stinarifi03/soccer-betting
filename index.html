@@ -736,8 +736,7 @@
                                 font-weight: normal !important;
                             }
                             .ticket-details > div > strong,
-                            .ticket-meta-line span > strong,
-                            .ticket-amount strong {
+                            .ticket-meta-line span > strong {
                                 font-weight: bold !important;
                             }
                             .ticket-meta-line,
@@ -1095,10 +1094,7 @@
                         <span>OE-<strong>${ticketData.timestamp}</strong></span>
                         <span>CG-<strong>2005376</strong></span>
                     </div>
-                    <div class="ticket-amount">
-                        <div>IB-<strong>${ticketData.ib}</strong></div>
-                        <div>NS-<strong>${ticketData.ns}</strong></div>
-                    </div>
+                    <div class="ticket-amount"><div>IB-${ticketData.ib}${' '.repeat(18)}</div> <div>NS-${ticketData.ns}</div></div>
                 </div>
 
                 <div class="ticket-line"></div>
@@ -1109,24 +1105,15 @@
                         <div class="league-header">${leagueName}</div>
                         ${leagueMatches.map(match => `
                             <div class="ticket-match">
-<!--                                <div class="ticket-amount">-->
-<!--                                    <div>(${match.matchId}) ${match.code} ${match.sport}${' '.repeat(15 - match.sport.length)}</div>-->
-<!--                                    <div>${match.date} ${match.time}</div>-->
-<!--                                </div>-->
-<!--                                <div class="ticket-match-teams">${match.team1} - ${match.team2}</div>-->
-<!--                                <div class="ticket-amount bet-odds-row">-->
-<!--                                    <div class="bet-type">${match.betType}</div>-->
-<!--                                    <div class="bet-chosen">${match.betChosen}    </div> &lt;!&ndash; 4 spaces &ndash;&gt;-->
-<!--                                    <div class="odds-value">${formatNumber(match.odds)}</div>-->
-<!--                                </div>-->
                                 <div class="ticket-amount">
-                                    <div class="match-id">(${match.matchId}) ${match.code} ${match.sport}</div>
-                                    <div class="match-date">${match.date} ${match.time}</div>
+                                    <div>(${match.matchId}) ${match.code} ${match.sport}${' '.repeat(15 - match.sport.length)}</div>
+                                    <div>${match.date} ${match.time}</div>
                                 </div>
                                 <div class="ticket-match-teams">${match.team1} - ${match.team2}</div>
-                                <div class="ticket-amount">
+                                <div class="ticket-amount bet-odds-row">
                                     <div class="bet-type">${match.betType}</div>
-                                    <div><span class="bet-chosen">${match.betChosen}    </span> <span class="odds-value">${formatNumber(match.odds)}</span></div>
+                                    <div class="bet-chosen">${match.betChosen}    </div> <!-- 4 spaces -->
+                                    <div class="odds-value">${formatNumber(match.odds)}</div>
                                 </div>
                             </div>
                         `).join('')}
