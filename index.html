@@ -716,20 +716,6 @@
                         <link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">
                         <title>Print Ticket</title>
                         <style>
-                            /* Match details - Only bold specific elements */
-                            .ticket-match > div {
-                                font-weight: normal !important; /* Reset all */
-                            }
-                            .ticket-match-teams,          /* Team names */
-                            .bet-chosen,                  /* Bet chosen value */
-                            .odds-value {                 /* Odds */
-                                font-weight: bold !important;
-                            }
-                            /* Non-bold elements */
-                            .match-id, .sport-type,
-                            .match-date, .bet-type {
-                                font-weight: normal !important;
-                            }
                             /* Ticket details - Label normal, value bold */
                             .ticket-details > div,
                             .ticket-meta-line span {
@@ -737,6 +723,16 @@
                             }
                             .ticket-details > div > strong,
                             .ticket-meta-line span > strong {
+                                font-weight: bold !important;
+                            }
+
+                            /* Match details - Only bold specific elements */
+                            .ticket-match > div {
+                                font-weight: normal !important;
+                            }
+                            .ticket-match-teams strong,       /* Team names */
+                            .bet-chosen strong,               /* Bet chosen value */
+                            .odds-value strong {              /* Odds */
                                 font-weight: bold !important;
                             }
                             .ticket-meta-line,
@@ -1094,7 +1090,10 @@
                         <span>OE-<strong>${ticketData.timestamp}</strong></span>
                         <span>CG-<strong>2005376</strong></span>
                     </div>
-                    <div class="ticket-amount"><div>IB-${ticketData.ib}${' '.repeat(18)}</div> <div>NS-${ticketData.ns}</div></div>
+                    <div class="ticket-meta-line">
+                        <span>IB-<strong>${ticketData.ib}</strong></span>
+                        <span>NS-<strong>${ticketData.ns}</strong></span>
+                    </div>
                 </div>
 
                 <div class="ticket-line"></div>
@@ -1104,16 +1103,17 @@
                     ${Object.entries(matchesByLeague).map(([leagueName, leagueMatches]) => `
                         <div class="league-header">${leagueName}</div>
                         ${leagueMatches.map(match => `
+                            // In displayTicket() function, modify the match template to:
                             <div class="ticket-match">
                                 <div class="ticket-amount">
                                     <div>(${match.matchId}) ${match.code} ${match.sport}${' '.repeat(15 - match.sport.length)}</div>
                                     <div>${match.date} ${match.time}</div>
                                 </div>
-                                <div class="ticket-match-teams">${match.team1} - ${match.team2}</div>
+                                <div class="ticket-match-teams"><strong>${match.team1} - ${match.team2}</strong></div>
                                 <div class="ticket-amount bet-odds-row">
                                     <div class="bet-type">${match.betType}</div>
-                                    <div class="bet-chosen">${match.betChosen}    </div> <!-- 4 spaces -->
-                                    <div class="odds-value">${formatNumber(match.odds)}</div>
+                                    <div class="bet-chosen"><strong>${match.betChosen}    </strong></div>
+                                    <div class="odds-value"><strong>${formatNumber(match.odds)}</strong></div>
                                 </div>
                             </div>
                         `).join('')}
