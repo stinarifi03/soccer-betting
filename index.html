@@ -736,7 +736,8 @@
                                 font-weight: normal !important;
                             }
                             .ticket-details > div > strong,
-                            .ticket-meta-line span > strong {
+                            .ticket-meta-line span > strong,
+                            .ticket-amount strong {
                                 font-weight: bold !important;
                             }
                             .ticket-meta-line,
@@ -1094,7 +1095,10 @@
                         <span>OE-<strong>${ticketData.timestamp}</strong></span>
                         <span>CG-<strong>2005376</strong></span>
                     </div>
-                    <div class="ticket-amount"><div>IB-${ticketData.ib}${' '.repeat(18)}</div> <div>NS-${ticketData.ns}</div></div>
+                    <div class="ticket-amount">
+                        <div>IB-<strong>${ticketData.ib}</strong></div>
+                        <div>NS-<strong>${ticketData.ns}</strong></div>
+                    </div>
                 </div>
 
                 <div class="ticket-line"></div>
@@ -1122,7 +1126,7 @@
                                 <div class="ticket-match-teams">${match.team1} - ${match.team2}</div>
                                 <div class="ticket-amount">
                                     <div class="bet-type">${match.betType}</div>
-                                    <div><span class="bet-chosen">${match.betChosen}</span> <span class="odds-value">${formatNumber(match.odds)}</span></div>
+                                    <div><span class="bet-chosen">${match.betChosen}    </span> <span class="odds-value">${formatNumber(match.odds)}</span></div>
                                 </div>
                             </div>
                         `).join('')}
