@@ -716,6 +716,29 @@
                         <link href="https://fonts.cdnfonts.com/css/lantinghei-tc" rel="stylesheet">
                         <title>Print Ticket</title>
                         <style>
+                            /* Match details - Only bold specific elements */
+                            .ticket-match > div {
+                                font-weight: normal !important; /* Reset all */
+                            }
+                            .ticket-match-teams,          /* Team names */
+                            .bet-chosen,                  /* Bet chosen value */
+                            .odds-value {                 /* Odds */
+                                font-weight: bold !important;
+                            }
+                            /* Non-bold elements */
+                            .match-id, .sport-type,
+                            .match-date, .bet-type {
+                                font-weight: normal !important;
+                            }
+                            /* Ticket details - Label normal, value bold */
+                            .ticket-details > div,
+                            .ticket-meta-line span {
+                                font-weight: normal !important;
+                            }
+                            .ticket-details > div > strong,
+                            .ticket-meta-line span > strong {
+                                font-weight: bold !important;
+                            }
                             .ticket-meta-line,
                             .ticket-meta-line span,
                             .flush-details-line,
@@ -1059,18 +1082,17 @@
                 <div class="ticket-line"></div>
 
                 <div class="ticket-details">
-                    <div>CB-${ticketData.ticketCode}</div>
-                    <div class="ticket-meta-line four-items"> <!-- Added four-items class -->
-                        <span>CC-4098</span>
-                        <span>NC-GBO Italy S.p.A</span>
-                        <span>PV-14274</span>
-                        <span>TM-4</span>
-                    </div>
-                    <div class="ticket-amount"> <div>NP-Lignano Sabbiadoro, Via Arcobalen</div>   <div>TG-${ticketData.tg}</div></div>
+                    <div>CB-<strong>${ticketData.ticketCode}</strong></div>
                     <div class="ticket-meta-line">
-                        <span>GE-${formatDate(ticketData.date)}</span>
-                        <span>OE-${ticketData.timestamp}</span>
-                        <span>CG-2005376</span>
+                        <span>CC-<strong>4098</strong></span>
+                        <span>NC-<strong>GBO Italy S.p.A</strong></span>
+                        <span>PV-<strong>14274</strong></span>
+                        <span>TM-<strong>4</strong></span>
+                    </div>
+                    <div class="ticket-meta-line">
+                        <span>GE-<strong>${formatDate(ticketData.date)}</strong></span>
+                        <span>OE-<strong>${ticketData.timestamp}</strong></span>
+                        <span>CG-<strong>2005376</strong></span>
                     </div>
                     <div class="ticket-amount"><div>IB-${ticketData.ib}${' '.repeat(18)}</div> <div>NS-${ticketData.ns}</div></div>
                 </div>
@@ -1083,15 +1105,24 @@
                         <div class="league-header">${leagueName}</div>
                         ${leagueMatches.map(match => `
                             <div class="ticket-match">
+<!--                                <div class="ticket-amount">-->
+<!--                                    <div>(${match.matchId}) ${match.code} ${match.sport}${' '.repeat(15 - match.sport.length)}</div>-->
+<!--                                    <div>${match.date} ${match.time}</div>-->
+<!--                                </div>-->
+<!--                                <div class="ticket-match-teams">${match.team1} - ${match.team2}</div>-->
+<!--                                <div class="ticket-amount bet-odds-row">-->
+<!--                                    <div class="bet-type">${match.betType}</div>-->
+<!--                                    <div class="bet-chosen">${match.betChosen}    </div> &lt;!&ndash; 4 spaces &ndash;&gt;-->
+<!--                                    <div class="odds-value">${formatNumber(match.odds)}</div>-->
+<!--                                </div>-->
                                 <div class="ticket-amount">
-                                    <div>(${match.matchId}) ${match.code} ${match.sport}${' '.repeat(15 - match.sport.length)}</div>
-                                    <div>${match.date} ${match.time}</div>
+                                    <div class="match-id">(${match.matchId}) ${match.code} ${match.sport}</div>
+                                    <div class="match-date">${match.date} ${match.time}</div>
                                 </div>
                                 <div class="ticket-match-teams">${match.team1} - ${match.team2}</div>
-                                <div class="ticket-amount bet-odds-row">
+                                <div class="ticket-amount">
                                     <div class="bet-type">${match.betType}</div>
-                                    <div class="bet-chosen">${match.betChosen}    </div> <!-- 4 spaces -->
-                                    <div class="odds-value">${formatNumber(match.odds)}</div>
+                                    <div><span class="bet-chosen">${match.betChosen}</span> <span class="odds-value">${formatNumber(match.odds)}</span></div>
                                 </div>
                             </div>
                         `).join('')}
