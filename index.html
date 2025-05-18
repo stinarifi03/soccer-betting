@@ -263,27 +263,50 @@
             font-weight: 600 !important;
             font-size: 26px !important;
         }
+<!--        .ticket-footer {-->
+<!--            display: flex;-->
+<!--            justify-content: space-evenly; /* Changed from center */-->
+<!--            align-items: center;-->
+<!--            margin-top: 0 !important;-->
+<!--            padding-top: 0 !important;-->
+<!--            gap: 0; /* Removed space between images */-->
+<!--        }-->
         .ticket-footer {
             display: flex;
-            justify-content: space-evenly; /* Changed from center */
+            justify-content: space-between;
             align-items: center;
+            gap: 0 !important;
+            padding: 0 !important;
+            width: 210px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
             margin-top: 0 !important;
-            padding-top: 0 !important;
-            gap: 0; /* Removed space between images */
+            margin-bottom: 0 !important;  /* Remove space below footer */
+            padding-bottom: 0 !important;
         }
         .ticket-footer img {
             height: 35px; /* Reduced from 40px */
             width: auto;
             display: block;
         }
+<!--        .ticket-barcode {-->
+<!--            width: 260px;-->
+<!--            height: 60px;-->
+<!--            margin-top: 0 !important;-->
+<!--            margin-bottom: 0 !important;-->
+<!--            padding-top: 2px !important;-->
+<!--            padding-bottom: 2px !important;-->
+<!--            display: block;-->
+<!--        }-->
         .ticket-barcode {
-            width: 260px;
-            height: 60px;
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
-            padding-top: 2px !important;
-            padding-bottom: 2px !important;
-            display: block;
+                                width: 260px;
+                                height: 80px;
+                                margin: 2px auto !important; /* Reduced from 5px */
+                                display: block;
+                                margin-top: 0 !important;    /* Remove top margin */
+                                margin-bottom: 0 !important; /* Remove bottom margin */
+                                padding-top: 0 !important; /* Minimal padding if needed */
+                                padding-bottom: 0 !important;
         }
         .ticket-disclaimer {
             font-size: 6px !important;
@@ -974,7 +997,6 @@
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: center;
-<!--                                margin-top: 2px !important; /* Reduced from 10px */-->
                                 gap: 0 !important;
                                 padding: 0 !important;
                                 width: 210px !important;
