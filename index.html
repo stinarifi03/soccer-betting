@@ -175,14 +175,14 @@
         }
         .ticket-line {
             border-top: 1px solid #000;
-            margin: 2px -10px !important;
+            margin: 0 !important;
             width: calc(100% + 20px);
         }
         .ticket-details {
-            position: relative;
-            padding-left: 10px;
-            margin: 2px 0 !important;
-            line-height: 1.2;
+            margin: 0 !important; /* Reduced from 5px */
+            padding: 0 !important;
+            line-height: 1 !important; /* Reduced from 1.2 */
+            font-weight: bold !important;
         }
         .ticket-details::before {
             content: "";
@@ -207,6 +207,8 @@
             font-size: 12px;
             margin: 2px 0 !important;
             padding: 0 !important;
+            margin-top: 0 !important;     /* Remove space above quota */
+            padding-top: 0 !important;
         }
         .ticket-match {
             margin: 1px 0 !important;
