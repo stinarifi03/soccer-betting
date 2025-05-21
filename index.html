@@ -295,7 +295,7 @@
         }
 
         .footer-logo-adm {
-            height: 80px !important; /* Increased from 70px */
+            height: 60px !important; /* Increased from 70px */
             width: auto !important;
             max-width: 85px !important; /* Allow wider ADM logo */
             margin: 0 0 0 -5px !important; /* Negative margin to pull closer */
@@ -308,7 +308,7 @@
         }
         /* ADM Logo - Screen Display */
         .ticket-footer img.last-footer-image {
-            height: 45px !important;  /* Slightly larger than other logos */
+            height: 55px !important;  /* Slightly larger than other logos */
             width: auto !important;
             margin-left: 5px !important;
             object-fit: contain !important;
@@ -433,6 +433,17 @@
                 transform: translateX(-4mm) !important;
                 position: relative !important;
                 left: 0 !important;
+            }
+            .footer-logo-adm {
+                height: 80px !important;
+                max-width: 85px !important;
+                margin-left: -5px !important;
+            }
+
+            /* Ensure other logos stay smaller */
+            .footer-logo:not(.footer-logo-adm) {
+                height: 35px !important;
+                max-width: 38px !important;
             }
 
             /* TICKET CONTAINER */
