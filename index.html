@@ -633,6 +633,7 @@
         amdTimone: "https://i.ibb.co/7tqYPVg4/30d37fc6-90d6-4641-b589-c171e6c6b136.jpg",
         adm: "https://i.ibb.co/KcQqsrDp/adddmmm.jpg",
         title: "https://i.ibb.co/spL1p47B/6db9b7f1-1ac8-4b30-9925-07b9a890ba72.jpg",
+        tgjitha: "https://i.ibb.co/LDQfJCHH/2fe1a920-87e5-410f-b548-33d86ac92231.jpg"
         get barcode() {
             const canvas = document.createElement("canvas");
             JsBarcode(canvas, document.getElementById('ticketCodeField').value || "TICKET", {
@@ -1238,10 +1239,11 @@
                 </div>
 
                 <div class="ticket-footer">
-                    <img src="${ticketData.imageUrls.gioco}" alt="Gioco" class="footer-logo" style="margin-right:-3px">
-                    <img src="${ticketData.imageUrls.plus18}" alt="+18" class="footer-logo" style="margin-right:-3px">
-                    <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone" class="footer-logo">
-                    <img src="${ticketData.imageUrls.adm}" alt="ADM" class="footer-logo-adm">
+                    <img src="${ticketData.imageUrls.tgjitha}" alt="tgjitha" class="footer-logo">
+<!--                    <img src="${ticketData.imageUrls.gioco}" alt="Gioco" class="footer-logo" style="margin-right:-3px">-->
+<!--                    <img src="${ticketData.imageUrls.plus18}" alt="+18" class="footer-logo" style="margin-right:-3px">-->
+<!--                    <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone" class="footer-logo">-->
+<!--                    <img src="${ticketData.imageUrls.adm}" alt="ADM" class="footer-logo-adm">-->
                 </div>
                 <img src="${ticketData.imageUrls.barcode}" alt="Barcode" class="ticket-barcode">
             </div>
