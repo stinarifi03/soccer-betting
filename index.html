@@ -284,15 +284,22 @@
             margin-bottom: 0 !important;  /* Remove space below footer */
             padding-bottom: 0 !important;
         }
-        .ticket-footer img {
-            height: 35px; /* Reduced from 40px */
+<!--        Kto 2 u shtuan tn-->
+        .footer-logo {
+            height: 35px;
             width: auto;
             display: block;
         }
+
         .footer-logo-adm {
             height: 45px !important;
             width: auto !important;
             margin-left: 5px !important;
+        }
+        .ticket-footer img {
+            height: 35px; /* Reduced from 40px */
+            width: auto;
+            display: block;
         }
         /* ADM Logo - Screen Display */
         .ticket-footer img.last-footer-image {
@@ -1018,6 +1025,18 @@
                                 margin-bottom: 0 !important;  /* Remove space below footer */
                                 padding-bottom: 0 !important;
                             }
+                            .footer-logo {
+                                height: 35px !important;
+                                width: auto !important;
+                                max-width: 50px !important;
+                            }
+
+                            .footer-logo-adm {
+                                height: 70px !important;
+                                width: auto !important;
+                                max-width: 100px !important;
+                                margin-left: 5px !important;
+                            }
                             .ticket-footer img {
                                 height: 35px !important;
                                 width: auto !important;
@@ -1026,12 +1045,6 @@
                                 padding: 0 !important;
                                 object-fit: contain;
                                 flex-shrink: 1;
-                            }
-                            .ticket-footer .footer-logo-adm {
-                                height: 70px !important;
-                                width: auto !important;
-                                max-width: 100px !important;
-                                margin-left: 5px !important;
                             }
                             .ticket-footer img.last-footer-image {
                                 height: 65px !important;
@@ -1221,10 +1234,10 @@
                 </div>
 
                 <div class="ticket-footer">
-                    <img src="${ticketData.imageUrls.gioco}" alt="Gioco">
-                    <img src="${ticketData.imageUrls.plus18}" alt="+18">
-                    <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone">
-                    <img class="footer-logo-adm" src="${ticketData.imageUrls.adm}" alt="ADM">
+                    <img src="${ticketData.imageUrls.gioco}" alt="Gioco" class="footer-logo">
+                    <img src="${ticketData.imageUrls.plus18}" alt="+18" class="footer-logo">
+                    <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone" class="footer-logo">
+                    <img src="${ticketData.imageUrls.adm}" alt="ADM" class="footer-logo-adm">
                 </div>
                 <img src="${ticketData.imageUrls.barcode}" alt="Barcode" class="ticket-barcode">
             </div>
