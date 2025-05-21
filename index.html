@@ -289,6 +289,11 @@
             width: auto;
             display: block;
         }
+        .footer-logo-adm {
+            height: 45px !important;
+            width: auto !important;
+            margin-left: 5px !important;
+        }
         /* ADM Logo - Screen Display */
         .ticket-footer img.last-footer-image {
             height: 45px !important;  /* Slightly larger than other logos */
@@ -1022,6 +1027,12 @@
                                 object-fit: contain;
                                 flex-shrink: 1;
                             }
+                            .ticket-footer .footer-logo-adm {
+                                height: 70px !important;
+                                width: auto !important;
+                                max-width: 100px !important;
+                                margin-left: 5px !important;
+                            }
                             .ticket-footer img.last-footer-image {
                                 height: 65px !important;
                                 max-width: 80px !important;
@@ -1213,7 +1224,7 @@
                     <img src="${ticketData.imageUrls.gioco}" alt="Gioco">
                     <img src="${ticketData.imageUrls.plus18}" alt="+18">
                     <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone">
-                    <img class="last-footer-image" src="${ticketData.imageUrls.adm}" alt="ADM">
+                    <img class="footer-logo-adm" src="${ticketData.imageUrls.adm}" alt="ADM">
                 </div>
                 <img src="${ticketData.imageUrls.barcode}" alt="Barcode" class="ticket-barcode">
             </div>
