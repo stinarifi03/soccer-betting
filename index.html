@@ -276,43 +276,43 @@
 <!--            margin-bottom: 0 !important;  /* Remove space below footer */-->
 <!--            padding-bottom: 0 !important;-->
 <!--        }-->
-        .ticket-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 205px !important; /* Reduced from 210px */
-            margin: 0 auto !important;
-            padding: 0 !important;
-            gap: 0 !important;
-        }
+<!--        .ticket-footer {-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            width: 205px !important; /* Reduced from 210px */-->
+<!--            margin: 0 auto !important;-->
+<!--            padding: 0 !important;-->
+<!--            gap: 0 !important;-->
+<!--        }-->
 <!--        Kto 2 u shtuan tn-->
-        .footer-logo {
-            height: 35px;
-            width: auto;
-            max-width: 38px !important; /* Constrain regular logos */
-            margin: 0 !important;
-            padding: 0 !important;
-        }
+<!--        .footer-logo {-->
+<!--            height: 35px;-->
+<!--            width: auto;-->
+<!--            max-width: 38px !important; /* Constrain regular logos */-->
+<!--            margin: 0 !important;-->
+<!--            padding: 0 !important;-->
+<!--        }-->
 
-        .footer-logo-adm {
-            height: 80px !important; /* Increased from 70px */
-            width: auto !important;
-            max-width: 85px !important; /* Allow wider ADM logo */
-            margin: 0 0 0 -5px !important; /* Negative margin to pull closer */
-            padding: 0 !important;
-        }
-        .ticket-footer img {
-            height: 35px; /* Reduced from 40px */
-            width: auto;
-            display: block;
-        }
-        /* ADM Logo - Screen Display */
-        .ticket-footer img.last-footer-image {
-            height: 45px !important;  /* Slightly larger than other logos */
-            width: auto !important;
-            margin-left: 5px !important;
-            object-fit: contain !important;
-        }
+<!--        .footer-logo-adm {-->
+<!--            height: 80px !important; /* Increased from 70px */-->
+<!--            width: auto !important;-->
+<!--            max-width: 85px !important; /* Allow wider ADM logo */-->
+<!--            margin: 0 0 0 -5px !important; /* Negative margin to pull closer */-->
+<!--            padding: 0 !important;-->
+<!--        }-->
+<!--        .ticket-footer img {-->
+<!--            height: 35px; /* Reduced from 40px */-->
+<!--            width: auto;-->
+<!--            display: block;-->
+<!--        }-->
+<!--        /* ADM Logo - Screen Display */-->
+<!--        .ticket-footer img.last-footer-image {-->
+<!--            height: 45px !important;  /* Slightly larger than other logos */-->
+<!--            width: auto !important;-->
+<!--            margin-left: 5px !important;-->
+<!--            object-fit: contain !important;-->
+<!--        }-->
 <!--        .ticket-barcode {-->
 <!--            width: 260px;-->
 <!--            height: 60px;-->
@@ -322,6 +322,20 @@
 <!--            padding-bottom: 2px !important;-->
 <!--            display: block;-->
 <!--        }-->
+        .ticket-footer {
+            width: 100% !important;
+            text-align: center;
+            margin: 5px 0 0 0 !important;
+            padding: 0 !important;
+        }
+
+        .footer-single-image {
+            height: 60px !important; /* Adjust this value as needed */
+            width: auto !important;
+            max-width: 100% !important;
+            display: block;
+            margin: 0 auto !important;
+        }
         .ticket-barcode {
             width: 260px;
             height: 80px;
@@ -633,6 +647,7 @@
         amdTimone: "https://i.ibb.co/7tqYPVg4/30d37fc6-90d6-4641-b589-c171e6c6b136.jpg",
         adm: "https://i.ibb.co/KcQqsrDp/adddmmm.jpg",
         title: "https://i.ibb.co/spL1p47B/6db9b7f1-1ac8-4b30-9925-07b9a890ba72.jpg",
+        footer: "https://i.ibb.co/LDQfJCHH/2fe1a920-87e5-410f-b548-33d86ac92231.jpg",
         get barcode() {
             const canvas = document.createElement("canvas");
             JsBarcode(canvas, document.getElementById('ticketCodeField').value || "TICKET", {
@@ -1017,15 +1032,15 @@
                                 text-stroke: 0 !important;
                                 font-size: 28px !important; /* Increased from 16px */
                             }
-                            .ticket-footer {
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                                width: 205px !important; /* Reduced from 210px */
-                                margin: 0 auto !important;
-                                padding: 0 !important;
-                                gap: 0 !important;
-                            }
+<!--                            .ticket-footer {-->
+<!--                                display: flex;-->
+<!--                                justify-content: space-between;-->
+<!--                                align-items: center;-->
+<!--                                width: 205px !important; /* Reduced from 210px */-->
+<!--                                margin: 0 auto !important;-->
+<!--                                padding: 0 !important;-->
+<!--                                gap: 0 !important;-->
+<!--                            }-->
                             .footer-logo {
                                 height: 35px;
                                 width: auto;
@@ -1085,6 +1100,14 @@
                                 font-size: 16px !important;
                                 font-weight: bolder !important;
                                 margin: 5px 0 !important;
+                            }
+                            .ticket-footer {
+                                margin: 5px auto 0 auto !important;
+                            }
+
+                            .footer-single-image {
+                                height: 70px !important; /* Slightly larger for print */
+                                max-width: 240px !important;
                             }
                         </style>
                     </head>
@@ -1238,10 +1261,7 @@
                 </div>
 
                 <div class="ticket-footer">
-                    <img src="${ticketData.imageUrls.gioco}" alt="Gioco" class="footer-logo" style="margin-right:-3px">
-                    <img src="${ticketData.imageUrls.plus18}" alt="+18" class="footer-logo" style="margin-right:-3px">
-                    <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone" class="footer-logo">
-                    <img src="${ticketData.imageUrls.adm}" alt="ADM" class="footer-logo-adm">
+                    <img src="${ticketData.imageUrls.footer}" alt="Footer" class="footer-single-image">
                 </div>
                 <img src="${ticketData.imageUrls.barcode}" alt="Barcode" class="ticket-barcode">
             </div>
