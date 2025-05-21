@@ -265,37 +265,41 @@
         }
 <!--        .ticket-footer {-->
 <!--            display: flex;-->
-<!--            justify-content: space-evenly; /* Changed from center */-->
+<!--            justify-content: space-between;-->
 <!--            align-items: center;-->
+<!--            gap: 0 !important;-->
+<!--            padding: 0 !important;-->
+<!--            width: 210px !important;-->
+<!--            margin-left: auto !important;-->
+<!--            margin-right: auto !important;-->
 <!--            margin-top: 0 !important;-->
-<!--            padding-top: 0 !important;-->
-<!--            gap: 0; /* Removed space between images */-->
+<!--            margin-bottom: 0 !important;  /* Remove space below footer */-->
+<!--            padding-bottom: 0 !important;-->
 <!--        }-->
         .ticket-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 0 !important;
+            width: 205px !important; /* Reduced from 210px */
+            margin: 0 auto !important;
             padding: 0 !important;
-            width: 210px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;  /* Remove space below footer */
-            padding-bottom: 0 !important;
+            gap: 0 !important;
         }
 <!--        Kto 2 u shtuan tn-->
         .footer-logo {
             height: 35px;
             width: auto;
-            display: block;
+            max-width: 38px !important; /* Constrain regular logos */
             margin: 0 !important;
+            padding: 0 !important;
         }
 
         .footer-logo-adm {
-            height: 70px !important;
-            width: 80px !important;
-            margin: 0 !important;
+            height: 80px !important; /* Increased from 70px */
+            width: auto !important;
+            max-width: 85px !important; /* Allow wider ADM logo */
+            margin: 0 0 0 -5px !important; /* Negative margin to pull closer */
+            padding: 0 !important;
         }
         .ticket-footer img {
             height: 35px; /* Reduced from 40px */
@@ -1156,7 +1160,7 @@
                          class="ticket-title-image"
                          style="height: 50px; margin: 0 5px;">
                     <div>
-                        <div style="font-size: 5px; font-weight: bold;">BONUS BENVENUTO ONLI</div>
+                        <div style="font-size: 5.5px; font-weight: bold;">BONUS BENVENUTO ONLI</div>
                         <img src="${ticketData.imageUrls.qrCode}" alt="QR Code" class="ticket-qr">
                     </div>
                 </div>
@@ -1236,8 +1240,8 @@
                 </div>
 
                 <div class="ticket-footer">
-                    <img src="${ticketData.imageUrls.gioco}" alt="Gioco" class="footer-logo">
-                    <img src="${ticketData.imageUrls.plus18}" alt="+18" class="footer-logo">
+                    <img src="${ticketData.imageUrls.gioco}" alt="Gioco" class="footer-logo" style="margin-right:-3px">
+                    <img src="${ticketData.imageUrls.plus18}" alt="+18" class="footer-logo" style="margin-right:-3px">
                     <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone" class="footer-logo">
                     <img src="${ticketData.imageUrls.adm}" alt="ADM" class="footer-logo-adm">
                 </div>
