@@ -322,12 +322,12 @@
 <!--            padding-bottom: 2px !important;-->
 <!--            display: block;-->
 <!--        }-->
-        .ticket-footer {
-            width: 100% !important;
-            text-align: center;
-            margin: 5px 0 0 0 !important;
-            padding: 0 !important;
-        }
+<!--        .ticket-footer {-->
+<!--            width: 100% !important;-->
+<!--            text-align: center;-->
+<!--            margin: 5px 0 0 0 !important;-->
+<!--            padding: 0 !important;-->
+<!--        }-->
 
 <!--        .footer-single-image {-->
 <!--            height: 80px !important; /* Adjust this value as needed */-->
@@ -1102,13 +1102,9 @@
                                 font-weight: bolder !important;
                                 margin: 5px 0 !important;
                             }
-                            .ticket-footer {
-                                margin: 5px auto 0 auto !important;
-                            }
-
-                            .footer-single-image {
-                                height: 90px !important; /* Slightly larger for print */
-                                max-width: none !important;
+                            .ticket-footer img {
+                                height: 60px !important;
+                                max-width: 210px !important;
                             }
                         </style>
                     </head>
@@ -1262,7 +1258,7 @@
                 </div>
 
                 <div class="ticket-footer">
-                    <img src="${ticketData.imageUrls.footer}" alt="Footer"  style="height:80px;width:auto;max-width:240px">
+                    <img src="${ticketData.imageUrls.footer}" alt="Footer"  style="height:60px;width:auto;max-width:210px;display:block;margin:0 auto;">
                 </div>
                 <img src="${ticketData.imageUrls.barcode}" alt="Barcode" class="ticket-barcode">
             </div>
