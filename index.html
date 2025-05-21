@@ -1021,27 +1021,25 @@
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: center;
-                                gap: 0 !important;
+                                width: 205px !important; /* Reduced from 210px */
+                                margin: 0 auto !important;
                                 padding: 0 !important;
-                                width: 210px !important;
-                                margin-left: auto !important;
-                                margin-right: auto !important;
-                                margin-top: 0 !important;
-                                margin-bottom: 0 !important;  /* Remove space below footer */
-                                padding-bottom: 0 !important;
+                                gap: 0 !important;
                             }
                             .footer-logo {
-                                height: 35px !important;
-                                width: auto !important;
-                                max-width: 50px !important;
+                                height: 35px;
+                                width: auto;
+                                max-width: 38px !important; /* Constrain regular logos */
                                 margin: 0 !important;
+                                padding: 0 !important;
                             }
 
                             .footer-logo-adm {
-                                height: 70px !important;
+                                height: 80px !important; /* Increased from 70px */
                                 width: auto !important;
-                                max-width: 100px !important;
-                                margin: 0 !important;
+                                max-width: 85px !important; /* Allow wider ADM logo */
+                                margin: 0 0 0 -5px !important; /* Negative margin to pull closer */
+                                padding: 0 !important;
                             }
                             .ticket-footer img {
                                 height: 35px !important;
