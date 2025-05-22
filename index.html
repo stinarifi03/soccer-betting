@@ -263,65 +263,27 @@
             font-weight: 600 !important;
             font-size: 26px !important;
         }
-<!--        .ticket-footer {-->
-<!--            display: flex;-->
-<!--            justify-content: space-between;-->
-<!--            align-items: center;-->
-<!--            gap: 0 !important;-->
-<!--            padding: 0 !important;-->
-<!--            width: 210px !important;-->
-<!--            margin-left: auto !important;-->
-<!--            margin-right: auto !important;-->
-<!--            margin-top: 0 !important;-->
-<!--            margin-bottom: 0 !important;  /* Remove space below footer */-->
-<!--            padding-bottom: 0 !important;-->
-<!--        }-->
-        .ticket-footer {
+        .footer-disclaimer-container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            width: 205px !important; /* Reduced from 210px */
-            margin: 0 auto !important;
-            padding: 0 !important;
-            gap: 0 !important;
-        }
-<!--        Kto 2 u shtuan tn-->
-        .footer-logo {
-            height: 35px;
-            width: auto;
-            max-width: 38px !important; /* Constrain regular logos */
-            margin: 0 !important;
-            padding: 0 !important;
+            width: 100%;
         }
 
-        .footer-logo-adm {
-            height: 60px !important; /* Increased from 70px */
-            width: auto !important;
-            max-width: 85px !important; /* Allow wider ADM logo */
-            margin: 0 0 0 -5px !important; /* Negative margin to pull closer */
+        .footer-single-image {
+            height: 70px !important;
+            max-width: 210px !important;
+            margin: 5px auto !important;
+            display: block;
+            object-fit: contain;
+        }
+
+        .ticket-footer {
+            display: block !important;
+            width: 100% !important;
+            margin: 0 auto !important;
             padding: 0 !important;
         }
-        .ticket-footer img {
-            height: 35px; /* Reduced from 40px */
-            width: auto;
-            display: block;
-        }
-        /* ADM Logo - Screen Display */
-        .ticket-footer img.last-footer-image {
-            height: 55px !important;  /* Slightly larger than other logos */
-            width: auto !important;
-            margin-left: 5px !important;
-            object-fit: contain !important;
-        }
-<!--        .ticket-barcode {-->
-<!--            width: 260px;-->
-<!--            height: 60px;-->
-<!--            margin-top: 0 !important;-->
-<!--            margin-bottom: 0 !important;-->
-<!--            padding-top: 2px !important;-->
-<!--            padding-bottom: 2px !important;-->
-<!--            display: block;-->
-<!--        }-->
         .ticket-barcode {
             width: 260px;
             height: 80px;
@@ -347,6 +309,7 @@
             display: block;
             content: "";
             margin-top: 2px;
+            margin-bottom: 3px !important;
         }
         .hidden {
             display: none;
@@ -929,20 +892,13 @@
                             .ticket-meta-line span {
                                 white-space: nowrap;
                             }
-<!--                            body, .ticket, .ticket * {-->
-<!--                                font-family: "Calibri", "Calibri Light", sans-serif !important;-->
-<!--                            }-->
                             body { font-family: 'Courier New', monospace; padding: 10px; }
                             .ticket {
                                 width: 300px;
-<!--                                border: 1px solid #000;-->
                                 padding: 5px;
                                 background-color: white;
                                 font-size: 10px;
                                 margin: 0 auto;
-<!--                                transform: translateX(-6mm) !important;  // Increased from -4/-5mm-->
-<!--                                left: 0 !important;-->
-<!--                                margin-left: -2mm !important;-->
                             }
                             .ticket-header {
                                 display: flex;
@@ -1038,33 +994,10 @@
                                 padding: 0 !important;
                                 gap: 0 !important;
                             }
-                            .footer-logo {
-                                height: 35px;
-                                width: auto;
-                                max-width: 38px !important; /* Constrain regular logos */
-                                margin: 0 !important;
-                                padding: 0 !important;
-                            }
-
-                            .footer-logo-adm {
-                                height: 80px !important; /* Increased from 70px */
-                                width: auto !important;
-                                max-width: 85px !important; /* Allow wider ADM logo */
-                                margin: 0 0 0 -5px !important; /* Negative margin to pull closer */
-                                padding: 0 !important;
-                            }
-                            .ticket-footer img {
-                                height: 35px !important;
-                                width: auto !important;
-                                max-width: 48px !important;
-                                margin: 0 !important;
-                                padding: 0 !important;
-                                object-fit: contain;
-                                flex-shrink: 1;
-                            }
-                            .ticket-footer img.last-footer-image {
-                                height: 65px !important;
-                                max-width: 80px !important;
+                            .footer-single-image {
+                                height: 60px !important;
+                                max-width: 200px !important;
+                                margin: 3px auto !important;
                             }
                             .ticket-barcode {
                                 width: 260px;
@@ -1244,16 +1177,14 @@
                     <div class="ticket-winnings-pattern"></div>
                 </div>
 
-                <div class="ticket-disclaimer">
-                    Consulta le probabilità di vincita e i regolamenti di gioco su goldbet.it.<br>
-                    Il gioco è vietato ai minori di 18 anni e può causare dipendenza patologica.
-                </div>
-
                 <div class="ticket-footer">
-                    <img src="${ticketData.imageUrls.gioco}" alt="Gioco" class="footer-logo" style="margin-right:-3px">
-                    <img src="${ticketData.imageUrls.plus18}" alt="+18" class="footer-logo" style="margin-right:-3px">
-                    <img src="${ticketData.imageUrls.amdTimone}" alt="AMD Timone" class="footer-logo">
-                    <img src="${ticketData.imageUrls.adm}" alt="ADM" class="footer-logo">
+                    <div class="footer-disclaimer-container">
+                        <div class="ticket-disclaimer">
+                            Consulta le probabilità di vincita e i regolamenti di gioco su goldbet.it.<br>
+                            Il gioco è vietato ai minori di 18 anni e può causare dipendenza patologica.
+                        </div>
+                        <img src="${ticketData.imageUrls.footer}" alt="Footer Logo" class="footer-single-image">
+                    </div>
                 </div>
                 <img src="${ticketData.imageUrls.barcode}" alt="Barcode" class="ticket-barcode">
             </div>
