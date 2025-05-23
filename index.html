@@ -146,7 +146,7 @@
             font-size: 9px;
         }
         .ticket {
-            width: 78mm;
+            width: 80mm !important;
             border: 1px solid #000;
             padding: 5px;
             background-color: white;
@@ -197,6 +197,8 @@
             display: flex;
             justify-content: space-between; /* Aligns GE, OE, CG in one line */
             white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
         }
         .ticket-section {
             margin: 2px 0 !important;  /* Reduced from 5px */
@@ -423,7 +425,7 @@
 
             /* TICKET BODY */
             .ticket {
-                width: 76mm !important;
+                width: 79mm !important;
                 min-width: 76mm !important;
                 max-width: 76mm !important;
                 margin: 0 !important;
@@ -457,7 +459,7 @@
 
             /* PRINT SETTINGS */
             @page {
-                size: 82mm auto;
+                size: 80mm auto;
                 margin: 0 !important;
                 padding: 0 !important;
                 margin-left: -4mm !important; /* Compensate for printer offset */
